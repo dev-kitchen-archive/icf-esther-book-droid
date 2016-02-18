@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Books_proto</string>
+
+    <string name="intro_text_start">Esther in da House</string>
+    <string name="intro_text_howto">Scan them codes</string>
+    <string name="intro_text_go">Start scanning</string>
+
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+
+</resources>

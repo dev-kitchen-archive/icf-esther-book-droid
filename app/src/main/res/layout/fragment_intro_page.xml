@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/intro_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/intro_text"
+        android:textSize="80px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/intro_text_start"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/intro_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        />
+        <!--android:src=""/>-->
+</FrameLayout>
