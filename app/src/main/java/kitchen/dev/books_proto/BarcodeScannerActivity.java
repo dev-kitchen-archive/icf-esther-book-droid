@@ -1,12 +1,12 @@
 package kitchen.dev.books_proto;
 
 
-import android.graphics.Color;
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.google.zxing.ResultPoint;
 import com.journeyapps.barcodescanner.BarcodeCallback;
@@ -22,12 +22,10 @@ public class BarcodeScannerActivity extends AppCompatActivity {
     private BarcodeCallback callback = new BarcodeCallback() {
         @Override
         public void barcodeResult(BarcodeResult result) {
-            if (result.getText() != null) {
-                barcodeView.setStatusText(result.getText());
-            }
-            //Added preview of scanned barcode
-            ImageView imageView = (ImageView) findViewById(R.id.barcodePreview);
-            imageView.setImageBitmap(result.getBitmapWithResultPoints(Color.YELLOW));
+            Intent returnIntent = getIntent();
+            returnIntent.putExtra("url", result.toString());
+            setResult(Activity.RESULT_OK,returnIntent);
+            finish();
         }
 
         @Override
