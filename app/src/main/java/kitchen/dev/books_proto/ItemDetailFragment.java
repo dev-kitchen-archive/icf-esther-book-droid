@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+//TODO: remove dummy content
 import kitchen.dev.books_proto.dummy.DummyContent;
 
 /**

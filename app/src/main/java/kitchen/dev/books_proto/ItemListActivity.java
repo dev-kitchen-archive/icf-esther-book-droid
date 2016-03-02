@@ -33,7 +33,7 @@ public class ItemListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
 
-    private List<Item> itemList = (ArrayList<Item>) ItemFactory.getInstance(getApplicationContext()).getAllItems();
+    private List<Item> itemList;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -44,6 +44,9 @@ public class ItemListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Get data
+        this.itemList = (ArrayList<Item>) ItemFactory.getInstance(getApplicationContext()).getAllItems();
 
         //read from Shared preference if intro was done
         SharedPreferences sharedPref = getSharedPreferences("introDone", Context.MODE_PRIVATE);
@@ -118,14 +121,14 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).getId().toString());
-            holder.mContentView.setText(mValues.get(position).getTitle());
+                    holder.mItem = mValues.get(position);
+                    holder.mIdView.setText(mValues.get(position).getId().toString());
+                    holder.mContentView.setText(mValues.get(position).getTitle());
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mTwoPane) {
+                    holder.mView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mTwoPane) {
                         Bundle arguments = new Bundle();
                         arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.getId().toString());
                         ItemDetailFragment fragment = new ItemDetailFragment();

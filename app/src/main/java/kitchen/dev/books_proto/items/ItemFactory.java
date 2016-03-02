@@ -105,6 +105,7 @@ public class ItemFactory {
         //TODO: check if entry is up to date
 
         if(c.getCount() == 0){
+            //TODO: API call
             return apiHelper.getItem(id.toString());
             //TODO: save thumbnails to db
         }else {

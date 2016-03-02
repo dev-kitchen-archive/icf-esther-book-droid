@@ -12,6 +12,7 @@ public class Item {
     private String teaser;
     private String thumpUrl;
     private String assetUrl;
+    //TODO: Add books and chapters
 
     Item(UUID id){
         this.id = id;
