@@ -20,7 +20,7 @@ public class ApiHelper {
 
     public Item getItem(String id){
         String url = MEDIA_URL+id+".json";
-        //TODO: create url and get data
+        //TODO: get data
 
 
 
