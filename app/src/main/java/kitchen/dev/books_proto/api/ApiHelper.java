@@ -24,7 +24,7 @@ public class ApiHelper {
 
 
 
-        return ItemFactory.getInstance(this.context).addItem(uuid, title, type, teaser, thumbUrl, assetUrl);
+        return null;//ItemFactory.getInstance(this.context).addItem(uuid, title, type, teaser, thumbUrl, assetUrl);
     }
 
     //TODO: getVideo

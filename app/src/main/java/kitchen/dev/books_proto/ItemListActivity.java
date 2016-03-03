@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import java.util.List;
 public class ItemListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
+    public static Context appContext;
 
     private List<Item> itemList;
 
@@ -45,8 +47,12 @@ public class ItemListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        appContext = this.getApplicationContext();
+
         //Get data
-        this.itemList = (ArrayList<Item>) ItemFactory.getInstance(getApplicationContext()).getAllItems();
+        this.itemList = ItemFactory.getInstance().getAllItems();
+
+        Log.d("ItemListActivity", itemList.toString());
 
         //read from Shared preference if intro was done
         SharedPreferences sharedPref = getSharedPreferences("introDone", Context.MODE_PRIVATE);
