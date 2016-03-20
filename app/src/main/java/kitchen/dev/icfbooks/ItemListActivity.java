@@ -1,4 +1,4 @@
-package kitchen.dev.books_proto;
+package kitchen.dev.icfbooks;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import kitchen.dev.books_proto.items.Item;
-import kitchen.dev.books_proto.items.ItemFactory;
+import kitchen.dev.icfbooks.items.Item;
+import kitchen.dev.icfbooks.items.ItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;

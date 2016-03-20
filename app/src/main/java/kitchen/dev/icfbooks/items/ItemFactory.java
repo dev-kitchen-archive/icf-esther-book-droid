@@ -1,4 +1,4 @@
-package kitchen.dev.books_proto.items;
+package kitchen.dev.icfbooks.items;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import kitchen.dev.books_proto.api.ApiHelper;
+import kitchen.dev.icfbooks.api.ApiHelper;
 
 /**
  * Created by noc on 19.02.16.
