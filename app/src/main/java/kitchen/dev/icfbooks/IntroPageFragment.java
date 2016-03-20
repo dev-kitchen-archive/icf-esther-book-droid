@@ -1,4 +1,4 @@
-package kitchen.dev.books_proto;
+package kitchen.dev.icfbooks;
 
 import android.content.Context;
 import android.content.Intent;

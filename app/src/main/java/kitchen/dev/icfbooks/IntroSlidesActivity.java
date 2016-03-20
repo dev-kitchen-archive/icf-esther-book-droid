@@ -1,4 +1,4 @@
-package kitchen.dev.books_proto;
+package kitchen.dev.icfbooks;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;

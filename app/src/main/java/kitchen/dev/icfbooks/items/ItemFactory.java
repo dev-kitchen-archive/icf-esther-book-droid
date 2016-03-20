@@ -1,17 +1,15 @@
-package kitchen.dev.books_proto.items;
+package kitchen.dev.icfbooks.items;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import kitchen.dev.books_proto.ItemListActivity;
-import kitchen.dev.books_proto.api.ApiHelper;
+import kitchen.dev.icfbooks.api.ApiHelper;
 
 /**
  * Created by noc on 19.02.16.
@@ -24,15 +22,15 @@ public class ItemFactory {
     private ApiHelper apiHelper;
 
     private ItemFactory(){
-        this.context = ItemListActivity.appContext;
         this.dbHelper = new ItemSqlHelper(context);
         this.apiHelper = new ApiHelper(context);
     }
 
-    public static ItemFactory getInstance(){
+    public static ItemFactory getInstance(Context context){
         if(itemFactory == null){
             itemFactory = new ItemFactory();
         }
+        ItemFactory.context = context;
         return itemFactory;
     }
 
@@ -106,11 +104,10 @@ public class ItemFactory {
 
         //TODO: check if entry is up to date
 
-        //if(c.getCount() == 0){
-            //TODO: API call
-            //return apiHelper.getItem(id.toString());
+        if(c.getCount() == 0){
+            return apiHelper.getItem(id.toString());
             //TODO: save thumbnails to db
-        //}else {
+        }else {
             c.moveToFirst();
             UUID uuid = (UUID.fromString(
                             c.getString(
@@ -125,7 +122,7 @@ public class ItemFactory {
             String assetUrl = c.getString(c.getColumnIndexOrThrow(ItemContract.ItemEntry.COLUMN_NAME_ASSET_URL));
             return createItem(uuid, title, type, teaser, thumbUrl, assetUrl);
 
-        //}
+        }
     }
 
     public Item addItem(UUID id, String title, String type, String teaser, String thumbUrl, String assetUrl){
