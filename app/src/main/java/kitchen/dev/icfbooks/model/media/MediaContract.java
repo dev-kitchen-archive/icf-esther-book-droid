@@ -1,16 +1,16 @@
-package kitchen.dev.icfbooks.model.items;
+package kitchen.dev.icfbooks.model.media;
 
 import android.provider.BaseColumns;
 
 /**
  * Created by noc on 19.02.16.
  */
-public final class ItemContract {
+public final class MediaContract {
 
-    private ItemContract(){}
+    private MediaContract(){}
 
     private static final String TEXT_TYPE = " TEXT";
-    public static final String SQL_CREATE_ENTRIES =
+    public static final String SQL_CREATE_MEDIA_TABLE =
             "CREATE TABLE " + ItemEntry.TABLE_NAME + " (" +
                     ItemEntry.COLUMN_NAME_ID + TEXT_TYPE + " PRIMARY KEY," +
                     ItemEntry.COLUMN_NAME_TITLE + TEXT_TYPE + "," +
@@ -30,5 +30,9 @@ public final class ItemContract {
         public static final String COLUMN_NAME_TYPE = "type";
         public static final String COLUMN_NAME_THUMB_URL = "thumbUrl";
         public static final String COLUMN_NAME_ASSET_URL = "assetUrl";
+    }
+
+    public static void upgradeSchema(int targetVersion) {
+
     }
 }

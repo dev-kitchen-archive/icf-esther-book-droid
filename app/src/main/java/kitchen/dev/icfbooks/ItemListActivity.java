@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import kitchen.dev.icfbooks.model.items.Item;
-import kitchen.dev.icfbooks.model.items.ItemFactory;
+import kitchen.dev.icfbooks.model.media.Media;
+import kitchen.dev.icfbooks.model.media.MediaFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class ItemListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
 
-    private List<Item> itemList;
+    private List<Media> itemList;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -45,7 +45,7 @@ public class ItemListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        itemList = (ArrayList<Item>) ItemFactory.getInstance(getApplicationContext()).getAllItems();;
+        itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();;
         //read from Shared preference if intro was done
         SharedPreferences sharedPref = getSharedPreferences("introDone", Context.MODE_PRIVATE);
         boolean introDone = sharedPref.getBoolean("INTRO_DONE", false);
@@ -104,9 +104,9 @@ public class ItemListActivity extends AppCompatActivity {
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Item> mValues;
+        private final List<Media> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<Item> items) {
+        public SimpleItemRecyclerViewAdapter(List<Media> items) {
             mValues = items;
         }
 
@@ -154,7 +154,7 @@ public class ItemListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public Item mItem;
+            public Media mItem;
 
             public ViewHolder(View view) {
                 super(view);
