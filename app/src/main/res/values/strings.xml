@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Books_proto</string>
+    <string name="app_name">ICF Books</string>
 
     <string name="intro_text_start">Esther in da House</string>
     <string name="intro_text_howto">Scan them codes</string>
