@@ -2,7 +2,7 @@ package kitchen.dev.icfbooks.dal;
 
 import android.content.Context;
 
-import kitchen.dev.icfbooks.model.items.Item;
+import kitchen.dev.icfbooks.model.media.Media;
 
 /**
  * Created by noc on 19.02.16.
@@ -17,7 +17,7 @@ public class ApiHelper {
         this.context = context;
     }
 
-    public Item getItem(String id) {
+    public Media getItem(String id) {
         String url = MEDIA_URL + id + ".json";
         //TODO: get data
 

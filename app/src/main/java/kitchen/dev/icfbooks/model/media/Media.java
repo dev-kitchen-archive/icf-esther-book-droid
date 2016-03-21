@@ -1,11 +1,11 @@
-package kitchen.dev.icfbooks.model.items;
+package kitchen.dev.icfbooks.model.media;
 
 import java.util.UUID;
 
 /**
  * Created by noc on 19.02.16.
  */
-public class Item {
+public class Media {
     private UUID id;
     private String type;
     private String title;
@@ -13,7 +13,7 @@ public class Item {
     private String thumpUrl;
     private String assetUrl;
 
-    Item(UUID id){
+    Media(UUID id){
         this.id = id;
     }
 
