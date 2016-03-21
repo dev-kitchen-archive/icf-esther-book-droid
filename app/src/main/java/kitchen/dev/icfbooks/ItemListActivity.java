@@ -33,7 +33,7 @@ public class ItemListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
 
-    private List<Item> itemList = (ArrayList<Item>) ItemFactory.getInstance(getApplicationContext()).getAllItems();
+    private List<Item> itemList;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -45,6 +45,7 @@ public class ItemListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        itemList = (ArrayList<Item>) ItemFactory.getInstance(getApplicationContext()).getAllItems();;
         //read from Shared preference if intro was done
         SharedPreferences sharedPref = getSharedPreferences("introDone", Context.MODE_PRIVATE);
         boolean introDone = sharedPref.getBoolean("INTRO_DONE", false);

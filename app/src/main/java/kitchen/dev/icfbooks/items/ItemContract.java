@@ -27,7 +27,7 @@ public final class ItemContract {
         public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_TITLE = "title";
         public static final String COLUMN_NAME_TEASER = "teaser";
-        public static final String COLUMN_NAME_TYPE = "teaser";
+        public static final String COLUMN_NAME_TYPE = "type";
         public static final String COLUMN_NAME_THUMB_URL = "thumbUrl";
         public static final String COLUMN_NAME_ASSET_URL = "assetUrl";
     }

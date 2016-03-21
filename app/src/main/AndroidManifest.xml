@@ -9,10 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="kitchen.dev.icf.books.IntroSlidesActivity"
+            android:name="kitchen.dev.icfbooks.IntroSlidesActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name="kitchen.dev.icf.books.ItemListActivity"
+            android:name="kitchen.dev.icfbooks.ItemListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -22,15 +22,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="kitchen.dev.icf.books.ItemDetailActivity"
+            android:name="kitchen.dev.icfbooks.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName="kitchen.dev.icf.books.ItemListActivity"
+            android:parentActivityName="kitchen.dev.icfbooks.ItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icf.books.ItemListActivity" />
         </activity>
-        <activity android:name="kitchen.dev.icf.books.BarcodeScannerActivity"></activity>
+        <activity android:name="kitchen.dev.icfbooks.BarcodeScannerActivity"></activity>
 
 
 
