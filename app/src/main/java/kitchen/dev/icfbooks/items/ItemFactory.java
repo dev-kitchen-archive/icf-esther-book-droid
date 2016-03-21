@@ -27,10 +27,11 @@ public class ItemFactory {
     }
 
     public static ItemFactory getInstance(Context context){
+        //TODO check this code
+        ItemFactory.context = context;
         if(itemFactory == null){
             itemFactory = new ItemFactory();
         }
-        ItemFactory.context = context;
         return itemFactory;
     }
 

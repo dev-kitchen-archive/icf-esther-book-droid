@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,6 @@ import java.util.List;
 public class ItemListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
-    public static Context appContext;
 
     private List<Item> itemList;
 
@@ -47,13 +45,7 @@ public class ItemListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        appContext = this.getApplicationContext();
-
-        //Get data
-        this.itemList = ItemFactory.getInstance().getAllItems();
-
-        Log.d("ItemListActivity", itemList.toString());
-
+        itemList = (ArrayList<Item>) ItemFactory.getInstance(getApplicationContext()).getAllItems();;
         //read from Shared preference if intro was done
         SharedPreferences sharedPref = getSharedPreferences("introDone", Context.MODE_PRIVATE);
         boolean introDone = sharedPref.getBoolean("INTRO_DONE", false);
@@ -127,14 +119,14 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-                    holder.mItem = mValues.get(position);
-                    holder.mIdView.setText(mValues.get(position).getId().toString());
-                    holder.mContentView.setText(mValues.get(position).getTitle());
+            holder.mItem = mValues.get(position);
+            holder.mIdView.setText(mValues.get(position).getId().toString());
+            holder.mContentView.setText(mValues.get(position).getTitle());
 
-                    holder.mView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (mTwoPane) {
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mTwoPane) {
                         Bundle arguments = new Bundle();
                         arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.getId().toString());
                         ItemDetailFragment fragment = new ItemDetailFragment();
