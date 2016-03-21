@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import kitchen.dev.icfbooks.items.Item;
-import kitchen.dev.icfbooks.items.ItemFactory;
+import kitchen.dev.icfbooks.model.items.Item;
+import kitchen.dev.icfbooks.model.items.ItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,8 @@
-package kitchen.dev.icfbooks.api;
+package kitchen.dev.icfbooks.dal;
 
 import android.content.Context;
 
-import kitchen.dev.icfbooks.items.Item;
-import kitchen.dev.icfbooks.items.ItemFactory;
+import kitchen.dev.icfbooks.model.items.Item;
 
 /**
  * Created by noc on 19.02.16.

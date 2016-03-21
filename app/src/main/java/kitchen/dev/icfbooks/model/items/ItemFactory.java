@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.items;
+package kitchen.dev.icfbooks.model.items;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import kitchen.dev.icfbooks.api.ApiHelper;
+import kitchen.dev.icfbooks.dal.ApiHelper;
+import kitchen.dev.icfbooks.dal.SqlHelper;
 
 /**
  * Created by noc on 19.02.16.
@@ -17,12 +18,12 @@ import kitchen.dev.icfbooks.api.ApiHelper;
 public class ItemFactory {
 
     private static ItemFactory itemFactory;
-    private ItemSqlHelper dbHelper;
+    private SqlHelper dbHelper;
     private static Context context;
     private ApiHelper apiHelper;
 
     private ItemFactory(){
-        this.dbHelper = new ItemSqlHelper(context);
+        this.dbHelper = new SqlHelper(context);
         this.apiHelper = new ApiHelper(context);
     }
 
@@ -39,6 +40,7 @@ public class ItemFactory {
         List<Item> itemList = new ArrayList<Item>();
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
