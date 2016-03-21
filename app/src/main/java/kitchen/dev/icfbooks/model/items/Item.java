@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.items;
+package kitchen.dev.icfbooks.model.items;
 
 import java.util.UUID;
 
