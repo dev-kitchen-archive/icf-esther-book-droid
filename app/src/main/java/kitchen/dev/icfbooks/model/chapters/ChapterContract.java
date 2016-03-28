@@ -26,8 +26,9 @@ public class ChapterContract {
     public static String upgradeSchema(int targetVersion) {
         switch (targetVersion) {
             case 5:
-                return "ALTER TABLE " + ChapterEntry.TABLE_NAME + "\nADD
-                break;
+                return "ALTER TABLE " + ChapterEntry.TABLE_NAME + "\n";
+            default:
+                throw new UnsupportedOperationException();
         }
     }
 }
