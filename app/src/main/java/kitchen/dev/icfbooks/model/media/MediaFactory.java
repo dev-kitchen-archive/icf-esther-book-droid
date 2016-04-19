@@ -68,6 +68,14 @@ public class MediaFactory {
             itemList.add(createItem(uuid, title, type, teaser, thumbUrl, assetUrl));
         }
 
+        Media m = new Media(UUID.fromString("4f7d85a6-3313-412b-850b-a3272f1981e6"));
+        m.setTitle("Test 1");
+        itemList.add(m);
+
+        m = new Media(UUID.fromString("4f7d85a6-3313-412b-850b-a3272f1981e6"));
+        m.setTitle("Test 2");
+        itemList.add(m);
+
         return itemList;
     }
 

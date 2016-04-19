@@ -21,6 +21,7 @@ import kitchen.dev.icfbooks.model.media.MediaFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * An activity representing a list of Items. This activity
@@ -48,16 +49,18 @@ public class ChapterListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();;
-
         SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name),Context.MODE_PRIVATE);
 
         //if intro wasn't done start intro
         if (!pref.getBoolean(SHARED_PREF_SETUP_FINISHED,false)) {
             Intent intent = new Intent(this, SplashScreen.class);
             startActivity(intent);
+            return;
         }
+
+        itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();;
+
+        System.out.println(itemList.size());
 
         setContentView(R.layout.activity_item_list);
 
