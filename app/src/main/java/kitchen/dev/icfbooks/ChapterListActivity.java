@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -29,9 +30,12 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class ItemListActivity extends AppCompatActivity {
+public class ChapterListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
+
+    public final static String BUNDLE_BOOK_ID = "BookID";
+    public final static String SHARED_PREF_SETUP_FINISHED = "SetupFinished";
 
     private List<Media> itemList;
 
@@ -46,15 +50,14 @@ public class ItemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();;
-        //read from Shared preference if intro was done
-        SharedPreferences sharedPref = getSharedPreferences("introDone", Context.MODE_PRIVATE);
-        boolean introDone = sharedPref.getBoolean("INTRO_DONE", false);
+
+        SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name),Context.MODE_PRIVATE);
 
         //if intro wasn't done start intro
-        //if (!introDone) {
+        if (!pref.getBoolean(SHARED_PREF_SETUP_FINISHED,false)) {
             Intent intent = new Intent(this, SplashScreen.class);
             startActivity(intent);
-        //}
+        }
 
         setContentView(R.layout.activity_item_list);
 
@@ -65,7 +68,7 @@ public class ItemListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //start barcode scanner on click
-                Intent intent = new Intent(ItemListActivity.this, BarcodeScannerActivity.class);
+                Intent intent = new Intent(ChapterListActivity.this, BarcodeScannerActivity.class);
                 startActivityForResult(intent, SCANNER_REQUEST);
             }
         });
@@ -92,7 +95,7 @@ public class ItemListActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //TODO: act on recieved url (extract UUID, start intent for detail, detail getItem from factory)
                 String url = data.getStringExtra("url");
-                Toast.makeText(ItemListActivity.this, url, Toast.LENGTH_LONG).show();
+                Toast.makeText(ChapterListActivity.this, url, Toast.LENGTH_LONG).show();
             }
         }
     }

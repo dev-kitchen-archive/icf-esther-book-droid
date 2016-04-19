@@ -7,11 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * A fragment representing a single Item detail screen.
- * This fragment is either contained in a {@link ItemListActivity}
+ * This fragment is either contained in a {@link ChapterListActivity}
  * in two-pane mode (on tablets) or a {@link ItemDetailActivity}
  * on handsets.
  */
