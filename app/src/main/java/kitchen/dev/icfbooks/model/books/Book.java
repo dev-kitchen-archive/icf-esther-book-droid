@@ -41,4 +41,8 @@ public class Book {
     public String getImage_url() {
         return image_url;
     }
+
+    public int getId() {
+        return id;
+    }
 }

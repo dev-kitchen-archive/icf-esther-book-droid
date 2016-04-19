@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/icf-books-droid.iml" filepath="$PROJECT_DIR$/icf-books-droid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/icf_books.iml" filepath="$PROJECT_DIR$/icf_books.iml" />
     </modules>
   </component>
 </project>

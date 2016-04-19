@@ -51,10 +51,10 @@ public class ItemListActivity extends AppCompatActivity {
         boolean introDone = sharedPref.getBoolean("INTRO_DONE", false);
 
         //if intro wasn't done start intro
-        if (!introDone) {
-            Intent intent = new Intent(this, IntroSlidesActivity.class);
+        //if (!introDone) {
+            Intent intent = new Intent(this, SplashScreen.class);
             startActivity(intent);
-        }
+        //}
 
         setContentView(R.layout.activity_item_list);
 

@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kitchen.dev.icfbooks">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="kitchen.dev.icfbooks.IntroSlidesActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name="kitchen.dev.icfbooks.ItemListActivity"
+            android:name=".ItemListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -22,23 +26,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="kitchen.dev.icfbooks.ItemDetailActivity"
+            android:name=".ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName="kitchen.dev.icfbooks.ItemListActivity"
+            android:parentActivityName=".ItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icf.books.ItemListActivity" />
         </activity>
-        <activity android:name="kitchen.dev.icfbooks.BarcodeScannerActivity"></activity>
-
-
-
-
+        <activity android:name=".BarcodeScannerActivity" />
+        <activity
+            android:name=".SplashScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash_screen"
+            android:parentActivityName=".ItemListActivity"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kitchen.dev.icfbooks.ItemListActivity" />
+        </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true" />
 </manifest>

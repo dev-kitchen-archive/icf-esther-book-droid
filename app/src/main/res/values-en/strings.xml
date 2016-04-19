@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ICF Books</string>
+    <string name="intro_text_start">Esther in da House</string>
+    <string name="chapter">Chapter</string>
+</resources>
