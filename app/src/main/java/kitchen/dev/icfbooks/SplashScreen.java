@@ -1,7 +1,9 @@
 package kitchen.dev.icfbooks;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +12,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -102,8 +103,14 @@ image.setOnClickListener(new View.OnClickListener() {
             @Override
             protected void onPostExecute(Object o) {
 
-                Intent intent = new Intent(activity, ItemListActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(activity, ChapterListActivity.class);
+                SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putBoolean(ChapterListActivity.SHARED_PREF_SETUP_FINISHED,true);
+                editor.commit();
+                Bundle bundle = new Bundle();
+                bundle.putInt(ChapterListActivity.BUNDLE_BOOK_ID,1);
+                startActivity(intent,bundle);
             }
         }.execute();
 

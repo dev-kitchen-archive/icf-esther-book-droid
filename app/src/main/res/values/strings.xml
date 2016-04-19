@@ -14,5 +14,5 @@
 
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="chapter">Chapter</string>
-
+    <string name="preferences_name" translatable="false">kitchen.dev.icfbooks.SHARED_PREFERENCES</string>
 </resources>
