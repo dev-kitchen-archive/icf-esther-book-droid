@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -16,12 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.VolleyError;
+
+import kitchen.dev.icfbooks.dal.ApiHelper;
+import kitchen.dev.icfbooks.dal.ApiResultHandler;
+import kitchen.dev.icfbooks.model.chapters.Chapter;
 import kitchen.dev.icfbooks.model.media.Media;
 import kitchen.dev.icfbooks.model.media.MediaFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * An activity representing a list of Items. This activity
@@ -31,7 +34,7 @@ import java.util.UUID;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class ChapterListActivity extends AppCompatActivity {
+public class MediaListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
 
@@ -39,6 +42,7 @@ public class ChapterListActivity extends AppCompatActivity {
     public final static String SHARED_PREF_SETUP_FINISHED = "SetupFinished";
 
     private List<Media> itemList;
+    private ApiHelper apiHelper;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -60,10 +64,21 @@ public class ChapterListActivity extends AppCompatActivity {
 
         itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();;
 
-        System.out.println(itemList.size());
+
 
         setContentView(R.layout.activity_item_list);
+        apiHelper = ApiHelper.getInstance(getBaseContext());
+        apiHelper.getChapters(1, new ApiResultHandler<Chapter[]>() {
+            @Override
+            public void onResult(Chapter[] result) {
+                System.out.println(result[0].getTitle());
+            }
 
+            @Override
+            public void onError(VolleyError error) {
+                //TODO handling error
+            }
+        });
         //TODO: Add progress
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -71,7 +86,7 @@ public class ChapterListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //start barcode scanner on click
-                Intent intent = new Intent(ChapterListActivity.this, BarcodeScannerActivity.class);
+                Intent intent = new Intent(MediaListActivity.this, BarcodeScannerActivity.class);
                 startActivityForResult(intent, SCANNER_REQUEST);
             }
         });
@@ -98,7 +113,7 @@ public class ChapterListActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //TODO: act on recieved url (extract UUID, start intent for detail, detail getItem from factory)
                 String url = data.getStringExtra("url");
-                Toast.makeText(ChapterListActivity.this, url, Toast.LENGTH_LONG).show();
+                Toast.makeText(MediaListActivity.this, url, Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -103,13 +103,13 @@ image.setOnClickListener(new View.OnClickListener() {
             @Override
             protected void onPostExecute(Object o) {
 
-                Intent intent = new Intent(activity, ChapterListActivity.class);
+                Intent intent = new Intent(activity, MediaListActivity.class);
                 SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
-                editor.putBoolean(ChapterListActivity.SHARED_PREF_SETUP_FINISHED,true);
+                editor.putBoolean(MediaListActivity.SHARED_PREF_SETUP_FINISHED,true);
                 editor.commit();
                 Bundle bundle = new Bundle();
-                bundle.putInt(ChapterListActivity.BUNDLE_BOOK_ID,1);
+                bundle.putInt(MediaListActivity.BUNDLE_BOOK_ID,1);
                 startActivity(intent,bundle);
             }
         }.execute();
