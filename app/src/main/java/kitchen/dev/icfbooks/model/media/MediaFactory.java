@@ -24,7 +24,7 @@ public class MediaFactory {
 
     private MediaFactory(){
         this.dbHelper = new SqlHelper(context);
-        this.apiHelper = new ApiHelper(context);
+        this.apiHelper = ApiHelper.getInstance(context);
     }
 
     public static MediaFactory getInstance(Context context){
