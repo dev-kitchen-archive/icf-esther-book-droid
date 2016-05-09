@@ -1,18 +1,8 @@
 <resources>
     <string name="app_name">ICF Books</string>
-
-    <string name="intro_text_start">Esther in da House</string>
-    <string name="intro_text_howto">Scan them codes</string>
-    <string name="intro_text_go">Start scanning</string>
-
-    <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
-
-    <string name="title_activity_intro_slide">IntroSlideActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-
-    <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="chapter">Chapter</string>
     <string name="preferences_name" translatable="false">kitchen.dev.icfbooks.SHARED_PREFERENCES</string>
+    <string name="intro_text_go">start scanning</string>
+    <string name="title_activity_splash_screen">Splash Screen</string>
 </resources>
