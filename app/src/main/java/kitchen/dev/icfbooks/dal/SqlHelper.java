@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import kitchen.dev.icfbooks.model.books.BookContract;
 import kitchen.dev.icfbooks.model.chapters.Chapter;
 import kitchen.dev.icfbooks.model.chapters.ChapterContract;
@@ -36,5 +41,17 @@ public class SqlHelper extends SQLiteOpenHelper {
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public String convertFromDateTime(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return dateFormat.format(date);
+    }
+
+    public Date convertToDateTime(String date) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return dateFormat.parse(date);
     }
 }

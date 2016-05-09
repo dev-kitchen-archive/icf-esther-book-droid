@@ -1,21 +1,31 @@
 package kitchen.dev.icfbooks.model.media;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
  * Created by noc on 19.02.16.
  */
-public class Media {
+public class Media<T> {
     private UUID id;
     private String type;
     private String title;
     private String teaser;
-    private String thumpUrl;
-    private String assetUrl;
-    //TODO: Add books and chapters
+    private String thumbnail_url;
+    private Date updated_at;
+    private T data;
 
-    Media(UUID id){
+
+    public Media(){
+    }
+
+    public Media(UUID id, String type, String title, String teaser, String thumbnail_url, Date updated_at) {
         this.id = id;
+        this.type = type;
+        this.title = title;
+        this.teaser = teaser;
+        this.thumbnail_url = thumbnail_url;
+        this.updated_at = updated_at;
     }
 
     public void destroy(){
@@ -54,20 +64,27 @@ public class Media {
         this.teaser = teaser;
     }
 
-    public String getThumpUrl() {
-        return thumpUrl;
+    public String getThumbnail_url() {
+        return thumbnail_url;
     }
 
-    public void setThumpUrl(String thumpUrl) {
-        this.thumpUrl = thumpUrl;
+    public void setThumbnail_url(String thumbnail_url) {
+        this.thumbnail_url = thumbnail_url;
     }
 
-    public String getAssetUrl() {
-        return assetUrl;
+    public Date getUpdated_at() {
+        return updated_at;
     }
 
-    public void setAssetUrl(String assetUrl) {
-        this.assetUrl = assetUrl;
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
     }
 
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public T getData() {
+        return data;
+    }
 }

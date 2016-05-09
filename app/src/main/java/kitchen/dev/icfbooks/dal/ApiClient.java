@@ -6,21 +6,30 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 
+import kitchen.dev.icfbooks.model.books.Book;
 import kitchen.dev.icfbooks.model.chapters.Chapter;
 import kitchen.dev.icfbooks.model.media.Media;
+import kitchen.dev.icfbooks.model.media.MediaContract;
+import kitchen.dev.icfbooks.model.media.MediaTypes;
 
 /**
  * Created by noc on 19.02.16.
  */
 public class ApiClient {
-    private static final String BASE_URL = "https://rhino.dev.kitchen/de/";
+    public static final String BASE_URL = "https://rhino.dev.kitchen/";
 
     private RequestQueue queue;
     private static ApiClient instance;
@@ -37,13 +46,17 @@ public class ApiClient {
         return instances.get(context);
     }
 
+    private String getLanguage() {
+        return Locale.getDefault().getLanguage();
+    }
+
     public void getChapters(int bookId, final ApiResultHandler<Chapter[]> handler) {
-        String url = BASE_URL + "books/" + bookId + "/chapters.json";
+        String url = BASE_URL + getLanguage() + "/books/" + bookId + "/chapters.json";
         queue.add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new GsonBuilder().create();
-                handler.onResult(gson.fromJson(response,Chapter[].class));
+                handler.onResult(gson.fromJson(response, Chapter[].class));
             }
         }, new Response.ErrorListener() {
             @Override
@@ -53,10 +66,58 @@ public class ApiClient {
         }));
     }
 
+
+    public void getBooks(final ApiResultHandler<Book[]> handler) {
+        String url = BASE_URL + getLanguage() + "/books.json";
+        queue.add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new GsonBuilder().create();
+                handler.onResult(gson.fromJson(response, Book[].class));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                handler.onError(error);
+            }
+        }));
+    }
+
+    public void getMedia(String id, final ApiResultHandler<Media> handler) {
+        String url = BASE_URL + getLanguage() + "/media/" + id + ".json";
+        queue.add(new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Gson gson = new GsonBuilder().create();
+                Class<?> cl = null;
+                try {
+                    switch(response.getString(MediaContract.MediaEntry.COLUMN_NAME_TYPE)){
+                        case "movie":
+                            cl = MediaTypes.MovieMedia.class;
+                            break;
+                        case "two_movies_and_text":
+                            cl = MediaTypes.TwoMoviesAndTextMedia.class;
+                            break;
+                    }
+
+                    Media media = (Media)gson.fromJson(response.toString(),cl);
+                    handler.onResult(media);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    handler.onError(null);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                handler.onError(error);
+            }
+        }));
+        Gson gson = new GsonBuilder().create();
+        JsonParser parser = new JsonParser();
+    }
+
     public Media getItem(String id) {
         return null;
     }
-
-    //TODO: getVideo
-    //TODO: getPic
 }
