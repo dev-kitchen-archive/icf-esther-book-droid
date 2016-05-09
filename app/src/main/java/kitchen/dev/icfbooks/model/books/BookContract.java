@@ -24,6 +24,7 @@ public class BookContract {
         public static final String COLUMN_NAME_TITLE = "title";
         public static final String COLUMN_NAME_AUTHOR = "author";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
+        public static final String COLUMN_NAME_UPDATED_AT = "updated_at";
         public static final String COLUMN_NAME_THUMB_IMAGE_URL = "image_url";
     }
 

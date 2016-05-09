@@ -8,5 +8,5 @@ import com.android.volley.VolleyError;
 public interface ApiResultHandler<T> {
     void onResult(T result);
 
-    void onError(VolleyError error);
+    void onError(Object error);
 }

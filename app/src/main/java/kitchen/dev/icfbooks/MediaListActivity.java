@@ -3,6 +3,7 @@ package kitchen.dev.icfbooks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +20,12 @@ import com.android.volley.VolleyError;
 
 import kitchen.dev.icfbooks.dal.ApiClient;
 import kitchen.dev.icfbooks.dal.ApiResultHandler;
+import kitchen.dev.icfbooks.dal.SqlHelper;
 import kitchen.dev.icfbooks.model.chapters.Chapter;
 import kitchen.dev.icfbooks.model.media.Media;
 import kitchen.dev.icfbooks.model.media.MediaFactory;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,33 +56,22 @@ public class MediaListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name),Context.MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
 
-        //if intro wasn't done start intro
-        if (!pref.getBoolean(SHARED_PREF_SETUP_FINISHED,false)) {
+        api = ApiClient.getInstance(getBaseContext());
+
+        if (!pref.getBoolean(SHARED_PREF_SETUP_FINISHED, false)) {
             Intent intent = new Intent(this, SplashScreen.class);
             startActivity(intent);
             return;
         }
 
-        itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();;
 
-
-
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean(MediaListActivity.SHARED_PREF_SETUP_FINISHED, false);
+        editor.apply();
+        itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();
         setContentView(R.layout.activity_item_list);
-        api = ApiClient.getInstance(getBaseContext());
-        api.getChapters(1, new ApiResultHandler<Chapter[]>() {
-            @Override
-            public void onResult(Chapter[] result) {
-                System.out.println(result[0].getTitle());
-            }
-
-            @Override
-            public void onError(VolleyError error) {
-                //TODO handling error
-            }
-        });
-        //TODO: Add progress
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -111,9 +103,23 @@ public class MediaListActivity extends AppCompatActivity {
         if (requestCode == SCANNER_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+                Uri url = Uri.parse(data.getStringExtra("url"));
+                api.getMedia(url.getLastPathSegment(), new ApiResultHandler<Media>() {
+                    @Override
+                    public void onResult(Media result) {
+                        MediaFactory.getInstance(getBaseContext()).saveItem(result);
+                        Intent intent = new Intent(getBaseContext(), ItemDetailActivity.class);
+                        intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, result.toString());
+
+                        getBaseContext().startActivity(intent);
+                    }
+
+                    @Override
+                    public void onError(Object error) {
+                        Toast.makeText(MediaListActivity.this, "error", Toast.LENGTH_LONG).show();
+                    }
+                });
                 //TODO: act on recieved url (extract UUID, start intent for detail, detail getItem from factory)
-                String url = data.getStringExtra("url");
-                Toast.makeText(MediaListActivity.this, url, Toast.LENGTH_LONG).show();
             }
         }
     }
