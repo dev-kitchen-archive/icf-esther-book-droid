@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import kitchen.dev.icfbooks.dal.ApiHelper;
+import kitchen.dev.icfbooks.dal.ApiClient;
 import kitchen.dev.icfbooks.dal.SqlHelper;
 
 /**
@@ -20,11 +20,11 @@ public class MediaFactory {
     private static MediaFactory itemFactory;
     private SqlHelper dbHelper;
     private static Context context;
-    private ApiHelper apiHelper;
+    private ApiClient api;
 
     private MediaFactory(){
         this.dbHelper = new SqlHelper(context);
-        this.apiHelper = ApiHelper.getInstance(context);
+        this.api = ApiClient.getInstance(context);
     }
 
     public static MediaFactory getInstance(Context context){
@@ -116,7 +116,7 @@ public class MediaFactory {
         //TODO: check if entry is up to date
 
         if(c.getCount() == 0){
-            return apiHelper.getItem(id.toString());
+            return api.getItem(id.toString());
             //TODO: save thumbnails to db
         }else {
             c.moveToFirst();

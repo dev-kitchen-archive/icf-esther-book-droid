@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
-import kitchen.dev.icfbooks.dal.ApiHelper;
+import kitchen.dev.icfbooks.dal.ApiClient;
 import kitchen.dev.icfbooks.dal.ApiResultHandler;
 import kitchen.dev.icfbooks.model.chapters.Chapter;
 import kitchen.dev.icfbooks.model.media.Media;
@@ -42,7 +42,7 @@ public class MediaListActivity extends AppCompatActivity {
     public final static String SHARED_PREF_SETUP_FINISHED = "SetupFinished";
 
     private List<Media> itemList;
-    private ApiHelper apiHelper;
+    private ApiClient api;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -67,8 +67,8 @@ public class MediaListActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_item_list);
-        apiHelper = ApiHelper.getInstance(getBaseContext());
-        apiHelper.getChapters(1, new ApiResultHandler<Chapter[]>() {
+        api = ApiClient.getInstance(getBaseContext());
+        api.getChapters(1, new ApiResultHandler<Chapter[]>() {
             @Override
             public void onResult(Chapter[] result) {
                 System.out.println(result[0].getTitle());
