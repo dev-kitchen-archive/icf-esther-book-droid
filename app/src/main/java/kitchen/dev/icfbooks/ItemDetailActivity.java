@@ -11,6 +11,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
+import java.util.UUID;
+
+import kitchen.dev.icfbooks.model.media.Media;
+import kitchen.dev.icfbooks.model.media.MediaFactory;
+import kitchen.dev.icfbooks.model.media.MediaTypes;
+
 /**
  * An activity representing a single Item detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
@@ -19,10 +25,15 @@ import android.view.MenuItem;
  */
 public class ItemDetailActivity extends AppCompatActivity {
 
+    private Media media;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        media = MediaFactory.getInstance(getBaseContext()).getItem(UUID.fromString(getIntent().getExtras().getString("item_id")));
         setContentView(R.layout.activity_item_detail);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
@@ -62,6 +73,11 @@ public class ItemDetailActivity extends AppCompatActivity {
                     .add(R.id.item_detail_container, fragment)
                     .commit();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
