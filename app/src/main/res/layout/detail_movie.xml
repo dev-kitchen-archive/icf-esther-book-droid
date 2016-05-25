@@ -16,6 +16,12 @@
         android:id="@+id/teaser"
         android:textSize="@dimen/abc_text_size_large_material" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_gravity="right" />
+
     <VideoView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
