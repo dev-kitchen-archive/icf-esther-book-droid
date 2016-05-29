@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ICF Books</string>
+    <string name="intro_text_start">Esther in da House</string>
     <string name="chapter">Chapter</string>
     <string name="intro_text_go">Start scanning</string>
     <string name="title_item_detail">Detail</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
+>>>>>>> develop
 </resources>

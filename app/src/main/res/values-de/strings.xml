@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ICF Books</string>
+    <string name="intro_text_start">Esther im Haus</string>
+    <string name="title_item_list"></string>
     <string name="chapter">Kapitel</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
     <string name="title_item_detail">Details</string>
