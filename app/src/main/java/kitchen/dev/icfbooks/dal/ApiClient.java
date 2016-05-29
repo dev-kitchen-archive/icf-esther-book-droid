@@ -29,7 +29,11 @@ import kitchen.dev.icfbooks.model.media.MediaTypes;
  * Created by noc on 19.02.16.
  */
 public class ApiClient {
+<<<<<<< HEAD
     public static final String BASE_URL = "https://rhino.dev.kitchen/";
+=======
+    public static final String BASE_URL = "https://rhino.dev.kitchen";
+>>>>>>> develop
 
     private RequestQueue queue;
     private static ApiClient instance;
@@ -51,7 +55,11 @@ public class ApiClient {
     }
 
     public void getChapters(int bookId, final ApiResultHandler<Chapter[]> handler) {
+<<<<<<< HEAD
         String url = BASE_URL + getLanguage() + "/books/" + bookId + "/chapters.json";
+=======
+        String url = BASE_URL + "/" + getLanguage() + "/books/" + bookId + "/chapters.json";
+>>>>>>> develop
         queue.add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -68,7 +76,11 @@ public class ApiClient {
 
 
     public void getBooks(final ApiResultHandler<Book[]> handler) {
+<<<<<<< HEAD
         String url = BASE_URL + getLanguage() + "/books.json";
+=======
+        String url = BASE_URL + "/" + getLanguage() + "/books.json";
+>>>>>>> develop
         queue.add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -84,7 +96,11 @@ public class ApiClient {
     }
 
     public void getMedia(String id, final ApiResultHandler<Media> handler) {
+<<<<<<< HEAD
         String url = BASE_URL + getLanguage() + "/media/" + id + ".json";
+=======
+        String url = BASE_URL + "/" + getLanguage() + "/media/" + id + ".json";
+>>>>>>> develop
         queue.add(new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

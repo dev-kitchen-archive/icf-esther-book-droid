@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:textIsSelectable="true"
+<<<<<<< HEAD
     tools:context="kitchen.dev.icfbooks.ItemDetailFragment" />
+=======
+    tools:context="kitchen.dev.icfbooks.ItemDetailFragment"
+    android:text="hello" />
+>>>>>>> develop

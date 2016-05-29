@@ -109,7 +109,7 @@ public class MediaListActivity extends AppCompatActivity {
                     public void onResult(Media result) {
                         MediaFactory.getInstance(getBaseContext()).saveItem(result);
                         Intent intent = new Intent(getBaseContext(), ItemDetailActivity.class);
-                        intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, result.toString());
+                        intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, result.getId().toString());
 
                         getBaseContext().startActivity(intent);
                     }

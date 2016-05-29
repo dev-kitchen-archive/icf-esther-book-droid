@@ -18,9 +18,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
+<<<<<<< HEAD
         android:layout_gravity="center"
         android:layout_marginTop="92dp"
         android:visibility="invisible" />
+=======
+        android:layout_gravity="center_horizontal|bottom"
+        android:visibility="invisible"
+        android:layout_marginBottom="60dp"
+        android:focusableInTouchMode="false"
+        android:foreground="#ffffff" />
+>>>>>>> develop
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->

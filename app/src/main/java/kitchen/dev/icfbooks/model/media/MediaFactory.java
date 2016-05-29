@@ -90,7 +90,8 @@ public class MediaFactory {
                 MediaContract.MediaEntry.COLUMN_NAME_TEASER,
                 MediaContract.MediaEntry.COLUMN_NAME_TYPE,
                 MediaContract.MediaEntry.COLUMN_NAME_THUMB_URL,
-                MediaContract.MediaEntry.COLUMN_NAME_DATA
+                MediaContract.MediaEntry.COLUMN_NAME_DATA,
+                MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT
         };
 
         // Define 'where' part of query.
@@ -148,6 +149,7 @@ public class MediaFactory {
         values.put(MediaContract.MediaEntry.COLUMN_NAME_TYPE, media.getType());
         values.put(MediaContract.MediaEntry.COLUMN_NAME_THUMB_URL, media.getThumbnail_url());
         values.put(MediaContract.MediaEntry.COLUMN_NAME_DATA, new Gson().toJson(media.getData()));
+        values.put(MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT, dbHelper.convertFromDateTime(media.getUpdated_at()));
 
         // Insert the new row, returning the primary key value of the new row
         db.insert(MediaContract.MediaEntry.TABLE_NAME, null, values);
@@ -173,7 +175,6 @@ public class MediaFactory {
         media.setTeaser(teaser);
         media.setThumbnail_url(thumbnail_url);
         media.setUpdated_at(updated_at);
-        media.setData(data);
 
         return media;
     }
