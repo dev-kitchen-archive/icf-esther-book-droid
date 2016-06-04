@@ -2,7 +2,7 @@ language: android
 android:
   components:
   - platform-tools
-  - build-tools-23.1.0
+  - build-tools-23.0.3
   - android-23
   script:
   - "./gradlew build connectedCheck"
