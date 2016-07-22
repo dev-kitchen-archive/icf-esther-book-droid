@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.model.media;
+package kitchen.dev.icfbooks.esther.model.media;
 
 /**
  * Created by samue on 5/9/2016.

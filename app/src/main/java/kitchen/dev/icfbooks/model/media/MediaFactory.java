@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.model.media;
+package kitchen.dev.icfbooks.esther.model.media;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import kitchen.dev.icfbooks.dal.ApiClient;
-import kitchen.dev.icfbooks.dal.SqlHelper;
+import kitchen.dev.icfbooks.esther.dal.ApiClient;
+import kitchen.dev.icfbooks.esther.dal.SqlHelper;
 
 /**
  * Created by noc on 19.02.16.

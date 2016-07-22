@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:padding="16dp"
     android:textIsSelectable="true"
-    tools:context="kitchen.dev.icfbooks.ItemDetailFragment"
+    tools:context="kitchen.dev.icfbooks.esther.ItemDetailFragment"
     android:orientation="vertical" >
 
     <TextView

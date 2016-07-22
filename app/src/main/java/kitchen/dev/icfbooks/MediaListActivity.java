@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks;
+package kitchen.dev.icfbooks.esther;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +18,12 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
-import kitchen.dev.icfbooks.dal.ApiClient;
-import kitchen.dev.icfbooks.dal.ApiResultHandler;
-import kitchen.dev.icfbooks.dal.SqlHelper;
-import kitchen.dev.icfbooks.model.chapters.Chapter;
-import kitchen.dev.icfbooks.model.media.Media;
-import kitchen.dev.icfbooks.model.media.MediaFactory;
+import kitchen.dev.icfbooks.esther.dal.ApiClient;
+import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
+import kitchen.dev.icfbooks.esther.dal.SqlHelper;
+import kitchen.dev.icfbooks.esther.model.chapters.Chapter;
+import kitchen.dev.icfbooks.esther.model.media.Media;
+import kitchen.dev.icfbooks.esther.model.media.MediaFactory;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;

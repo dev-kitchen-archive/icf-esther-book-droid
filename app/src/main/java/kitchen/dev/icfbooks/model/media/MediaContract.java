@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.model.media;
+package kitchen.dev.icfbooks.esther.model.media;
 
 import android.provider.BaseColumns;
 

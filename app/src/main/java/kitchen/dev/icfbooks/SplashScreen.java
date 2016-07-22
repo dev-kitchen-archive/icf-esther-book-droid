@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks;
+package kitchen.dev.icfbooks.esther;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -17,12 +17,12 @@ import android.widget.ImageView;
 
 import com.android.volley.VolleyError;
 
-import kitchen.dev.icfbooks.dal.ApiClient;
-import kitchen.dev.icfbooks.dal.ApiResultHandler;
-import kitchen.dev.icfbooks.dal.SqlHelper;
-import kitchen.dev.icfbooks.model.books.BookContract;
-import kitchen.dev.icfbooks.model.chapters.Chapter;
-import kitchen.dev.icfbooks.model.chapters.ChapterContract;
+import kitchen.dev.icfbooks.esther.dal.ApiClient;
+import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
+import kitchen.dev.icfbooks.esther.dal.SqlHelper;
+import kitchen.dev.icfbooks.esther.model.books.BookContract;
+import kitchen.dev.icfbooks.esther.model.chapters.Chapter;
+import kitchen.dev.icfbooks.esther.model.chapters.ChapterContract;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

@@ -1,9 +1,9 @@
-package kitchen.dev.icfbooks.model.books;
+package kitchen.dev.icfbooks.esther.model.books;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import kitchen.dev.icfbooks.model.media.Media;
+import kitchen.dev.icfbooks.esther.model.media.Media;
 
 /**
  * Created by samue on 03/21/16.

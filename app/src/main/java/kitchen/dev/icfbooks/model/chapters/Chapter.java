@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.model.chapters;
+package kitchen.dev.icfbooks.esther.model.chapters;
 
 import java.util.Date;
 

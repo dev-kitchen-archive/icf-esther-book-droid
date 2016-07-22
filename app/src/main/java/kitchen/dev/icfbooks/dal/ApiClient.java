@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.dal;
+package kitchen.dev.icfbooks.esther.dal;
 
 import android.content.Context;
 
@@ -19,11 +19,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Locale;
 
-import kitchen.dev.icfbooks.model.books.Book;
-import kitchen.dev.icfbooks.model.chapters.Chapter;
-import kitchen.dev.icfbooks.model.media.Media;
-import kitchen.dev.icfbooks.model.media.MediaContract;
-import kitchen.dev.icfbooks.model.media.MediaTypes;
+import kitchen.dev.icfbooks.esther.model.books.Book;
+import kitchen.dev.icfbooks.esther.model.chapters.Chapter;
+import kitchen.dev.icfbooks.esther.model.media.Media;
+import kitchen.dev.icfbooks.esther.model.media.MediaContract;
+import kitchen.dev.icfbooks.esther.model.media.MediaTypes;
 
 /**
  * Created by noc on 19.02.16.

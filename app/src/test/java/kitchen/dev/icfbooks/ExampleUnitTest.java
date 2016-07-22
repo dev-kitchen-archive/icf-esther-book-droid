@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks;
+package kitchen.dev.icfbooks.esther;
 
 import org.junit.Test;
 

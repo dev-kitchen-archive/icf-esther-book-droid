@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks;
+package kitchen.dev.icfbooks.esther;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -15,11 +15,11 @@ import android.widget.VideoView;
 import java.net.URL;
 import java.util.UUID;
 
-import kitchen.dev.icfbooks.dal.ApiClient;
-import kitchen.dev.icfbooks.dal.SqlHelper;
-import kitchen.dev.icfbooks.model.media.Media;
-import kitchen.dev.icfbooks.model.media.MediaFactory;
-import kitchen.dev.icfbooks.model.media.MediaTypes;
+import kitchen.dev.icfbooks.esther.dal.ApiClient;
+import kitchen.dev.icfbooks.esther.dal.SqlHelper;
+import kitchen.dev.icfbooks.esther.model.media.Media;
+import kitchen.dev.icfbooks.esther.model.media.MediaFactory;
+import kitchen.dev.icfbooks.esther.model.media.MediaTypes;
 
 /**
  * A fragment representing a single Item detail screen.

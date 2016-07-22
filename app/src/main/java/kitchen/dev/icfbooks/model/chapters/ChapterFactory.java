@@ -1,8 +1,8 @@
-package kitchen.dev.icfbooks.model.chapters;
+package kitchen.dev.icfbooks.esther.model.chapters;
 
 import java.util.List;
 
-import kitchen.dev.icfbooks.model.books.Book;
+import kitchen.dev.icfbooks.esther.model.books.Book;
 
 /**
  * Created by samue on 03/21/16.

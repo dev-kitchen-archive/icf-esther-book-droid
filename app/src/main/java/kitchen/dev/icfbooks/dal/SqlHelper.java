@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks.dal;
+package kitchen.dev.icfbooks.esther.dal;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,10 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import kitchen.dev.icfbooks.model.books.BookContract;
-import kitchen.dev.icfbooks.model.chapters.Chapter;
-import kitchen.dev.icfbooks.model.chapters.ChapterContract;
-import kitchen.dev.icfbooks.model.media.MediaContract;
+import kitchen.dev.icfbooks.esther.model.books.BookContract;
+import kitchen.dev.icfbooks.esther.model.chapters.Chapter;
+import kitchen.dev.icfbooks.esther.model.chapters.ChapterContract;
+import kitchen.dev.icfbooks.esther.model.media.MediaContract;
 
 /**
  * Created by noc on 19.02.16.

@@ -1,4 +1,4 @@
-package kitchen.dev.icfbooks;
+package kitchen.dev.icfbooks.esther;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.view.MenuItem;
 
 import java.util.UUID;
 
-import kitchen.dev.icfbooks.model.media.Media;
-import kitchen.dev.icfbooks.model.media.MediaFactory;
-import kitchen.dev.icfbooks.model.media.MediaTypes;
+import kitchen.dev.icfbooks.esther.model.media.Media;
+import kitchen.dev.icfbooks.esther.model.media.MediaFactory;
+import kitchen.dev.icfbooks.esther.model.media.MediaTypes;
 
 /**
  * An activity representing a single Item detail screen. This
