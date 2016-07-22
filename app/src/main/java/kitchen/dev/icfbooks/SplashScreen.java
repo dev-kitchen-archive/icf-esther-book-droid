@@ -17,12 +17,12 @@ import android.widget.ImageView;
 
 import com.android.volley.VolleyError;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import kitchen.dev.icfbooks.esther.dal.ApiClient;
 import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
 import kitchen.dev.icfbooks.esther.dal.SqlHelper;
-import kitchen.dev.icfbooks.esther.model.books.BookContract;
-import kitchen.dev.icfbooks.esther.model.chapters.Chapter;
-import kitchen.dev.icfbooks.esther.model.chapters.ChapterContract;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -108,27 +108,9 @@ public class SplashScreen extends AppCompatActivity {
                 final SqlHelper sqlHelper = new SqlHelper(getBaseContext());
                 final SQLiteDatabase sql = sqlHelper.getWritableDatabase();
 
-
-                final ContentValues values = new ContentValues();
-                values.put(BookContract.BookEntry.COLUMN_NAME_ID, 1);
-                values.put(BookContract.BookEntry.COLUMN_NAME_TITLE, "Esther");
-                values.put(BookContract.BookEntry.COLUMN_NAME_THUMB_IMAGE_URL, api.BASE_URL + "asset/W1siZiIsIjIwMTYvMDMvMjEvOG81NnNnbG1kdV9pY2ZfYm9va3NfaWNvbl8zXzUxMnJnYmEucG5nIl1d?sha=b45ef2eb8a2c1bc9");
-
-                final int id = (int) sql.insert(BookContract.BookEntry.TABLE_NAME, null, values);
-
-                api.getChapters(id, new ApiResultHandler<Chapter[]>() {
+                new Timer().schedule(new TimerTask() {
                     @Override
-                    public void onResult(Chapter[] result) {
-                        for (int i = 0; i < result.length; i++) {
-                            ContentValues chapterVals = new ContentValues();
-                            chapterVals.put(ChapterContract.ChapterEntry.COLUMN_NAME_ID, result[i].getId());
-                            chapterVals.put(ChapterContract.ChapterEntry.COLUMN_NAME_TITLE, result[i].getTitle());
-                            chapterVals.put(ChapterContract.ChapterEntry.COLUMN_NAME_NUMBER, result[i].getNumber());
-                            chapterVals.put(ChapterContract.ChapterEntry.COLUMN_NAME_BOOK_ID, id);
-                            chapterVals.put(ChapterContract.ChapterEntry.COLUMN_NAME_UPDATED_AT, sqlHelper.convertFromDateTime(result[i].getUpdatedAt()));
-                            sql.insert(ChapterContract.ChapterEntry.TABLE_NAME,null,chapterVals);
-                        }
-
+                    public void run() {
                         Intent intent = new Intent(activity, MediaListActivity.class);
                         SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = pref.edit();
@@ -138,12 +120,8 @@ public class SplashScreen extends AppCompatActivity {
                         bundle.putInt(MediaListActivity.BUNDLE_BOOK_ID, 1);
                         startActivity(intent, bundle);
                     }
+                }, 4000);
 
-                    @Override
-                    public void onError(Object error) {
-
-                    }
-                });
                 return null;
             }
 
