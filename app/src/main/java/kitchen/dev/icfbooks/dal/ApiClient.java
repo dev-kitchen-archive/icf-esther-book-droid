@@ -7,7 +7,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,8 +18,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Locale;
 
-import kitchen.dev.icfbooks.model.books.Book;
-import kitchen.dev.icfbooks.model.chapters.Chapter;
 import kitchen.dev.icfbooks.model.media.Media;
 import kitchen.dev.icfbooks.model.media.MediaContract;
 import kitchen.dev.icfbooks.model.media.MediaTypes;
@@ -29,7 +26,7 @@ import kitchen.dev.icfbooks.model.media.MediaTypes;
  * Created by noc on 19.02.16.
  */
 public class ApiClient {
-    public static final String BASE_URL = "https://rhino.dev.kitchen/";
+    public static final String BASE_URL = "https://icfbooks.herokuapp.com/";
 
     private RequestQueue queue;
     private static ApiClient instance;
@@ -48,41 +45,6 @@ public class ApiClient {
 
     private String getLanguage() {
         return Locale.getDefault().getLanguage();
-    }
-
-    public void getChapters(int bookId, final ApiResultHandler<Chapter[]> handler) {
-        String url = BASE_URL + getLanguage() + "/books/" + bookId + "/chapters.json";
-
-        queue.add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Gson gson = new GsonBuilder().create();
-                handler.onResult(gson.fromJson(response, Chapter[].class));
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                handler.onError(error);
-            }
-        }));
-    }
-
-
-    public void getBooks(final ApiResultHandler<Book[]> handler) {
-        String url = BASE_URL + getLanguage() + "/books.json";
-
-        queue.add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Gson gson = new GsonBuilder().create();
-                handler.onResult(gson.fromJson(response, Book[].class));
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                handler.onError(error);
-            }
-        }));
     }
 
     public void getMedia(String id, final ApiResultHandler<Media> handler) {

@@ -9,9 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import kitchen.dev.icfbooks.model.books.BookContract;
-import kitchen.dev.icfbooks.model.chapters.Chapter;
-import kitchen.dev.icfbooks.model.chapters.ChapterContract;
 import kitchen.dev.icfbooks.model.media.MediaContract;
 
 /**
@@ -26,16 +23,12 @@ public class SqlHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(BookContract.SQL_CREATE_BOOK_TABLE);
-        db.execSQL(ChapterContract.SQL_CREATE_CHAPTER_TABLE);
         db.execSQL(MediaContract.SQL_CREATE_MEDIA_TABLE);
         System.out.println("created tables in database " + DATABASE_NAME + ".");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         while (oldVersion++<newVersion){
             System.out.println("Upgrade DB schema to version " + oldVersion + ".");
-            BookContract.upgradeSchema(oldVersion);
-            ChapterContract.upgradeSchema(oldVersion);
             MediaContract.upgradeSchema(oldVersion);
         }
     }

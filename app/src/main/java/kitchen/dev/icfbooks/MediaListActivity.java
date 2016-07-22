@@ -16,16 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.android.volley.VolleyError;
-
 import kitchen.dev.icfbooks.dal.ApiClient;
 import kitchen.dev.icfbooks.dal.ApiResultHandler;
-import kitchen.dev.icfbooks.dal.SqlHelper;
-import kitchen.dev.icfbooks.model.chapters.Chapter;
 import kitchen.dev.icfbooks.model.media.Media;
 import kitchen.dev.icfbooks.model.media.MediaFactory;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,6 +105,7 @@ public class MediaListActivity extends AppCompatActivity {
                         MediaFactory.getInstance(getBaseContext()).saveItem(result);
                         Intent intent = new Intent(getBaseContext(), ItemDetailActivity.class);
                         intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, result.getId().toString());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         getBaseContext().startActivity(intent);
                     }
