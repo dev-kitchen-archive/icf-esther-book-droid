@@ -7,4 +7,5 @@
     <string name="preferences_name" translatable="false">kitchen.dev.icfbooks.esther.SHARED_PREFERENCES</string>
     <string name="intro_text_go">start scanning</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
+    <string name="menu_about">About</string>
 </resources>

@@ -7,4 +7,5 @@
     <string name="intro_text_go">Start scanning</string>
     <string name="title_item_detail">Detail</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
+    <string name="menu_about">About</string>
 </resources>

@@ -9,13 +9,17 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.FloatingActionButton;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import kitchen.dev.icfbooks.esther.AboutActivity;
 import kitchen.dev.icfbooks.esther.dal.ApiClient;
 import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
 import kitchen.dev.icfbooks.esther.model.media.Media;
@@ -118,6 +122,24 @@ public class MediaListActivity extends AppCompatActivity {
                 //TODO: act on recieved url (extract UUID, start intent for detail, detail getItem from factory)
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem item = menu.add(R.string.menu_about);
+        item.setIcon(R.drawable.common_google_signin_btn_icon_dark);
+        super.onCreateOptionsMenu(menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getTitle().toString().equals(this.getString(R.string.menu_about))){
+            Intent intent = new Intent(getBaseContext(),AboutActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {

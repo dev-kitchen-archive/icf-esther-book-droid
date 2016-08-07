@@ -7,4 +7,5 @@
     <string name="title_activity_splash_screen">Splash Screen</string>
     <string name="title_item_detail">Details</string>
     <string name="intro_text_go">lese QR Code</string>
+    <string name="menu_about">Über uns</string>
 </resources>
