@@ -67,8 +67,6 @@ public class BarcodeScannerActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},CAMERA_PERMISSION_REQUEST_CODE);
             this.recreate();
         }
-
-        //this.recreate();
     }
 
     @Override
