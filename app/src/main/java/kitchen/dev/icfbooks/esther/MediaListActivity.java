@@ -65,10 +65,6 @@ public class MediaListActivity extends AppCompatActivity {
             return;
         }
 
-
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean(MediaListActivity.SHARED_PREF_SETUP_FINISHED, false);
-        editor.apply();
         itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();
         setContentView(R.layout.activity_item_list);
 

@@ -49,6 +49,8 @@ public class BarcodeScannerActivity extends AppCompatActivity {
 
         barcodeView = (CompoundBarcodeView) findViewById(R.id.barcode_scanner);
         barcodeView.decodeContinuous(callback);
+
+
     }
 
 
@@ -63,6 +65,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
             Toast.makeText(this, "Camera permission needed. Please allow in App Settings for additional functionality.", Toast.LENGTH_LONG).show();
         } else {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},CAMERA_PERMISSION_REQUEST_CODE);
+            this.recreate();
         }
     }
 
