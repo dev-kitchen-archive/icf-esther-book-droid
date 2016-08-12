@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import kitchen.dev.icfbooks.esther.AboutActivity;
 import kitchen.dev.icfbooks.esther.dal.ApiClient;
 import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
 import kitchen.dev.icfbooks.esther.model.media.Media;
@@ -122,10 +121,7 @@ public class MediaListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem item = menu.add(R.string.menu_about);
-        item.setIcon(R.drawable.common_google_signin_btn_icon_dark);
-        super.onCreateOptionsMenu(menu);
-
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
