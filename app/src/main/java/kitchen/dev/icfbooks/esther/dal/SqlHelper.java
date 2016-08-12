@@ -16,7 +16,7 @@ import kitchen.dev.icfbooks.esther.model.media.MediaContract;
  */
 public class SqlHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
     public static final String DATABASE_NAME = "data.db";
 
     public SqlHelper(Context context) {
@@ -27,10 +27,9 @@ public class SqlHelper extends SQLiteOpenHelper {
         System.out.println("created tables in database " + DATABASE_NAME + ".");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        while (oldVersion++<newVersion){
-            System.out.println("Upgrade DB schema to version " + oldVersion + ".");
-            MediaContract.upgradeSchema(oldVersion);
-        }
+        System.out.println("upgrade tables in database " + DATABASE_NAME + ".");
+        db.execSQL(MediaContract.SQL_DROP_MEDIA_TABLE);
+        db.execSQL(MediaContract.SQL_CREATE_MEDIA_TABLE);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
