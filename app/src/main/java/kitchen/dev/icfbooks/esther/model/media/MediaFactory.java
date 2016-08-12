@@ -122,6 +122,10 @@ public class MediaFactory {
     }
 
     private Media getMedia(Cursor cursor) {
+        if(cursor.getCount() == 0) {
+            return null;
+        }
+
         UUID uuid = (UUID.fromString(cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_ID))));
         String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_TITLE));
         String teaser = cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_TEASER));
@@ -131,7 +135,7 @@ public class MediaFactory {
         Date date = new Date();
         try {
             date = dbHelper.convertToDateTime(cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT)));
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return createItem(uuid, type, title, teaser, thumbUrl, date, data);
