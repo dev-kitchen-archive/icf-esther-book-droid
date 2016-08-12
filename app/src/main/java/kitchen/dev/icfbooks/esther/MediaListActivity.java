@@ -101,7 +101,12 @@ public class MediaListActivity extends AppCompatActivity {
                 api.getMedia(url.getLastPathSegment(), new ApiResultHandler<Media>() {
                     @Override
                     public void onResult(Media result) {
-                        MediaFactory.getInstance(getBaseContext()).saveItem(result);
+                        MediaFactory media = MediaFactory.getInstance(getBaseContext());
+
+                        if(media.getItem(result.getId()) == null) {
+                            media.saveItem(result);
+                        }
+
                         Intent intent = new Intent(getBaseContext(), ItemDetailActivity.class);
                         intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, result.getId().toString());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
