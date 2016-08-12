@@ -183,8 +183,4 @@ public class MediaFactory {
         return media;
     }
 
-    public void deleteItem(UUID id) {
-        //TODO: implement deleteItem
-    }
-
 }

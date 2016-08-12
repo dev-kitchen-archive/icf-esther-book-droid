@@ -18,6 +18,7 @@
         <activity
             android:name=".MediaListActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,24 +29,38 @@
         <activity
             android:name=".ItemDetailActivity"
             android:label="@string/title_item_detail"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MediaListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
         </activity>
-        <activity android:name=".BarcodeScannerActivity" />
+        <activity android:name=".BarcodeScannerActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MediaListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
+        </activity>
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash_screen"
             android:parentActivityName=".MediaListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MediaListActivity" />
         </activity>
-        <activity android:name="kitchen.dev.icfbooks.esther.AboutActivity"></activity>
+        <activity android:name="kitchen.dev.icfbooks.esther.AboutActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MediaListActivity">>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
+        </activity>
     </application>
 
 </manifest>
