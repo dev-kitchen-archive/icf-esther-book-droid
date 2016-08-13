@@ -1,11 +1,14 @@
 package kitchen.dev.icfbooks.esther.dal;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
@@ -15,6 +18,8 @@ import com.google.gson.JsonParser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -29,11 +34,13 @@ public class ApiClient {
     public static final String BASE_URL = "https://icfbooks.herokuapp.com/";
 
     private RequestQueue queue;
+    private final Context context;
     private static ApiClient instance;
     private static HashMap<Context, ApiClient> instances = new HashMap<>();
 
     private ApiClient(Context context) {
         this.queue = Volley.newRequestQueue(context);
+        this.context = context;
     }
 
     public static synchronized ApiClient getInstance(Context context) {
@@ -47,7 +54,7 @@ public class ApiClient {
         return Locale.getDefault().getLanguage();
     }
 
-    public void getMedia(String id, final ApiResultHandler<Media> handler) {
+    public void getMedia(final String id, final ApiResultHandler<Media> handler) {
         String url = BASE_URL + getLanguage() + "/media/" + id + ".json";
         queue.add(new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -55,7 +62,7 @@ public class ApiClient {
                 Gson gson = new GsonBuilder().create();
                 Class<?> cl = null;
                 try {
-                    switch(response.getString(MediaContract.MediaEntry.COLUMN_NAME_TYPE)){
+                    switch (response.getString(MediaContract.MediaEntry.COLUMN_NAME_TYPE)) {
                         case "movie":
                             cl = MediaTypes.MovieMedia.class;
                             break;
@@ -64,8 +71,20 @@ public class ApiClient {
                             break;
                     }
 
-                    Media media = (Media)gson.fromJson(response.toString(),cl);
-                    handler.onResult(media);
+                    final Media media = (Media) gson.fromJson(response.toString(), cl);
+                    queue.add(new ImageRequest(media.getThumbnail_url(), new Response.Listener<Bitmap>() {
+                        @Override
+                        public void onResponse(Bitmap response) {
+                            try {
+                                FileOutputStream fos = context.openFileOutput(id, Context.MODE_PRIVATE);
+                                response.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                handler.onResult(media);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 0, 0, ImageView.ScaleType.CENTER, null, null));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     handler.onError(null);

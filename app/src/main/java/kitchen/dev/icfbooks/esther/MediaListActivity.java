@@ -103,13 +103,12 @@ public class MediaListActivity extends AppCompatActivity {
                     public void onResult(Media result) {
                         MediaFactory media = MediaFactory.getInstance(getBaseContext());
 
-                        if(media.getItem(result.getId()) == null) {
+                        if (media.getItem(result.getId()) == null) {
                             media.saveItem(result);
                         }
 
-                        Intent intent = new Intent(getBaseContext(), ItemDetailActivity.class);
-                        intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, result.getId().toString());
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent intent = new Intent(getBaseContext(), DetailActivity.class);
+                        intent.putExtra(DetailActivity.ARG_DETAIL_ID, result.getId().toString());
 
                         getBaseContext().startActivity(intent);
                     }
@@ -132,8 +131,8 @@ public class MediaListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getTitle().toString().equals(this.getString(R.string.menu_about))){
-            Intent intent = new Intent(getBaseContext(),AboutActivity.class);
+        if (item.getTitle().toString().equals(this.getString(R.string.menu_about))) {
+            Intent intent = new Intent(getBaseContext(), AboutActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -168,21 +167,10 @@ public class MediaListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.getId().toString());
-                        ItemDetailFragment fragment = new ItemDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.item_detail_container, fragment)
-                                .commit();
-                    } else {
                         Context context = v.getContext();
-                        Intent intent = new Intent(context, ItemDetailActivity.class);
-                        intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.getId().toString());
-
+                        Intent intent = new Intent(context, DetailActivity.class);
+                        intent.putExtra(DetailActivity.ARG_DETAIL_ID, holder.mItem.getId().toString());
                         context.startActivity(intent);
-                    }
                 }
             });
         }

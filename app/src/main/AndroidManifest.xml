@@ -29,16 +29,17 @@
         <activity
             android:name=".ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MediaListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
         </activity>
-        <activity android:name=".BarcodeScannerActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MediaListActivity">
+        <activity
+            android:name=".BarcodeScannerActivity"
+            android:parentActivityName=".MediaListActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
@@ -54,13 +55,29 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MediaListActivity" />
         </activity>
-        <activity android:name="kitchen.dev.icfbooks.esther.AboutActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MediaListActivity">>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/menu_about"
+            android:parentActivityName=".MediaListActivity"
+            android:screenOrientation="portrait">
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
         </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".MediaListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
+        </activity>
+        <activity
+            android:name=".PlaybackActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:label="@string/title_activity_playback"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

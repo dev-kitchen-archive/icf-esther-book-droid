@@ -28,10 +28,6 @@ public class Media<T> {
         this.updated_at = updated_at;
     }
 
-    public void destroy(){
-
-    }
-
     public UUID getId() {
         return id;
     }

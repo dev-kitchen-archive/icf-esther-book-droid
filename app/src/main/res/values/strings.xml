@@ -8,4 +8,8 @@
     <string name="intro_text_go">start scanning</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
     <string name="menu_about">About</string>
+
+    <string name="title_activity_playback">PlaybackActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
