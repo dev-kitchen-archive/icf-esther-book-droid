@@ -1,6 +1,8 @@
 package kitchen.dev.icfbooks.esther;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +10,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import java.util.UUID;
@@ -107,11 +115,22 @@ public class PlaybackActivity extends AppCompatActivity {
             }
         });
 
-
         if (savedInstanceState == null) {
             VideoView video = (VideoView)findViewById(R.id.videoView);
             video.setVideoURI(Uri.parse(getIntent().getStringExtra(PlaybackActivity.ARG_URL)));
             video.setMediaController(new MediaController(this));
+
+            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    findViewById(R.id.spinner).setVisibility(View.GONE);
+                    VideoView video = (VideoView)findViewById(R.id.videoView);
+                    video.setVisibility(View.VISIBLE);
+                    video.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    //progDailog.dismiss();
+                }
+            });
+
             video.requestFocus();
             video.start();
         }
