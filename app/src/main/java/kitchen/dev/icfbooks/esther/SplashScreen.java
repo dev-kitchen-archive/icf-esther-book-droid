@@ -75,26 +75,8 @@ public class SplashScreen extends AppCompatActivity {
 
 
         mImage = (ImageView) findViewById(R.id.imageView);
-        final View pb = (View) findViewById(R.id.progressBar);
 
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.fadein);
-
-        anim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                pb.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
 
         mImage.startAnimation(anim);
 

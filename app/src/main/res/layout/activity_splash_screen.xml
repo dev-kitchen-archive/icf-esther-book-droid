@@ -12,18 +12,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/imageView"
-        android:src="@mipmap/intro_slide" />
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_marginTop="92dp"
-        android:layout_gravity="center_horizontal|bottom"
-        android:visibility="invisible"
-        android:layout_marginBottom="60dp"
-        android:focusableInTouchMode="false"
-        android:foreground="#ffffff" />
+        android:src="@drawable/intro"
+        android:scaleType="centerCrop" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
