@@ -1,6 +1,8 @@
 language: android
 android:
   components:
+  - tools
+  - build-tools-23.0.2
   - platform-tools
   - android-23
   script:
