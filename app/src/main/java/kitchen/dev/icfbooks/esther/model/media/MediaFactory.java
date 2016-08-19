@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.MediaStore;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -175,6 +176,13 @@ public class MediaFactory {
         media.setUpdated_at(updated_at);
 
         return media;
+    }
+
+    public void deleteItem(Media media) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        int cnt = db.delete(MediaContract.MediaEntry.TABLE_NAME,MediaContract.MediaEntry.COLUMN_NAME_ID + "=?",new String[]{media.getId().toString()});
+        context.getFileStreamPath(media.getId().toString()).delete();
     }
 
 }

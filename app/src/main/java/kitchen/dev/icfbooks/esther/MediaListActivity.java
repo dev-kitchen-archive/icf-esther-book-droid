@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -189,6 +190,22 @@ public class MediaListActivity extends AppCompatActivity {
                     //context.startActivity(intent);
                 }
             });
+
+            if(BuildConfig.DEBUG) {
+                holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        MediaFactory.getInstance(getBaseContext()).deleteItem(holder.mItem);
+
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+
+
+                        return true;
+                    }
+                });
+            }
         }
 
         @Override
