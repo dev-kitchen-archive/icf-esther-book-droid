@@ -22,10 +22,10 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="0dp"
         android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_fab_add" />
+        android:scaleType="center"
+        android:src="@drawable/fab_add" />
 
 
 </android.support.design.widget.CoordinatorLayout>
