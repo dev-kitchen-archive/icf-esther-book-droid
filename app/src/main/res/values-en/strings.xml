@@ -2,10 +2,11 @@
 <resources>
     <string name="app_name">Esther Book</string>
     <string name="intro_text_start">Esther in da House</string>
-    <string name="title_item_list"></string>
     <string name="chapter">Chapter</string>
     <string name="intro_text_go">Start scanning</string>
     <string name="title_item_detail">Detail</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
     <string name="menu_about">About</string>
+    <string name="invalid_qr_error">Unknown QR Code</string>
+    <string name="loading">loading content...</string>
 </resources>

@@ -2,10 +2,11 @@
 <resources>
     <string name="app_name">Esther Buch</string>
     <string name="intro_text_start">Esther im Haus</string>
-    <string name="title_item_list"></string>
     <string name="chapter">Kapitel</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
     <string name="title_item_detail">Details</string>
     <string name="intro_text_go">lese QR Code</string>
     <string name="menu_about">Über uns</string>
+    <string name="invalid_qr_error">Upps, dieser QR Code scheint nicht mit dieser App kompatibel zu sein...</string>
+    <string name="loading">Inhalt wird geladen..</string>
 </resources>

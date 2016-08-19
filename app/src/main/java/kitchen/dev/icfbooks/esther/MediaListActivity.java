@@ -23,9 +23,11 @@ import kitchen.dev.icfbooks.esther.dal.ApiClient;
 import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
 import kitchen.dev.icfbooks.esther.model.media.Media;
 import kitchen.dev.icfbooks.esther.model.media.MediaFactory;
+import kitchen.dev.icfbooks.esther.model.media.MediaTypes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * An activity representing a list of Items. This activity
@@ -97,25 +99,32 @@ public class MediaListActivity extends AppCompatActivity {
         if (requestCode == SCANNER_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+                final Toast loadingToast = Toast.makeText(getBaseContext(),R.string.loading,Toast.LENGTH_LONG);
                 Uri url = Uri.parse(data.getStringExtra("url"));
                 api.getMedia(url.getLastPathSegment(), new ApiResultHandler<Media>() {
                     @Override
                     public void onResult(Media result) {
+                        loadingToast.cancel();
                         MediaFactory media = MediaFactory.getInstance(getBaseContext());
 
                         if (media.getItem(result.getId()) == null) {
                             media.saveItem(result);
                         }
 
-                        Intent intent = new Intent(getBaseContext(), DetailActivity.class);
-                        intent.putExtra(DetailActivity.ARG_DETAIL_ID, result.getId().toString());
-
+                        Intent intent = new Intent(getBaseContext(), PlaybackActivity.class);
+                        intent.putExtra(PlaybackActivity.ARG_URL, ((Media<MediaTypes.Movie>)result).getData().getFile_url());
                         getBaseContext().startActivity(intent);
+
+                        //Intent intent = new Intent(getBaseContext(), DetailActivity.class);
+                        //intent.putExtra(DetailActivity.ARG_DETAIL_ID, result.getId().toString());
+
+                        //getBaseContext().startActivity(intent);
                     }
 
                     @Override
                     public void onError(Object error) {
-                        Toast.makeText(MediaListActivity.this, "error", Toast.LENGTH_LONG).show();
+                        loadingToast.cancel();
+                        Toast.makeText(MediaListActivity.this, getString(R.string.invalid_qr_error), Toast.LENGTH_LONG).show();
                     }
                 });
                 //TODO: act on recieved url (extract UUID, start intent for detail, detail getItem from factory)
@@ -167,10 +176,13 @@ public class MediaListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, DetailActivity.class);
-                        intent.putExtra(DetailActivity.ARG_DETAIL_ID, holder.mItem.getId().toString());
-                        context.startActivity(intent);
+                    Intent intent = new Intent(getBaseContext(), PlaybackActivity.class);
+                    intent.putExtra(PlaybackActivity.ARG_URL, ((Media<MediaTypes.Movie>)holder.mItem).getData().getFile_url());
+                    getBaseContext().startActivity(intent);
+                    //Context context = v.getContext();
+                    //Intent intent = new Intent(context, DetailActivity.class);
+                    //intent.putExtra(DetailActivity.ARG_DETAIL_ID, holder.mItem.getId().toString());
+                    //context.startActivity(intent);
                 }
             });
         }
