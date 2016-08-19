@@ -3,6 +3,8 @@ package kitchen.dev.icfbooks.esther;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -170,8 +173,9 @@ public class MediaListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).getId().toString());
-            holder.mContentView.setText(mValues.get(position).getTitle());
+
+            Bitmap bmp = BitmapFactory.decodeFile(getBaseContext().getFileStreamPath(mValues.get(position).getId().toString()).getAbsolutePath());
+            holder.mImage.setImageBitmap(bmp);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -194,20 +198,18 @@ public class MediaListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
+            public final ImageView mImage;
             public Media mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mImage = (ImageView) view.findViewById(R.id.list_thumbnail);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + mItem.getTitle() + "'";
             }
         }
     }

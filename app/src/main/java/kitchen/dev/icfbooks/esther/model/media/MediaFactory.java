@@ -7,16 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
-import com.google.gson.annotations.JsonAdapter;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import kitchen.dev.icfbooks.esther.dal.ApiClient;
 import kitchen.dev.icfbooks.esther.dal.SqlHelper;
 
 /**
@@ -27,11 +23,9 @@ public class MediaFactory {
     private static MediaFactory itemFactory;
     private SqlHelper dbHelper;
     private static Context context;
-    private ApiClient api;
 
     private MediaFactory() {
         this.dbHelper = new SqlHelper(context);
-        this.api = ApiClient.getInstance(context);
     }
 
     public static MediaFactory getInstance(Context context) {
