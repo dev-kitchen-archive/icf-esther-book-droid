@@ -2,16 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp">
 
     <kitchen.dev.icfbooks.esther.view.SquaredImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list_thumbnail"
         android:scaleType="fitXY"
-        android:background="#CDE"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp" />
+        android:background="#CDE" />
 
 </LinearLayout>
