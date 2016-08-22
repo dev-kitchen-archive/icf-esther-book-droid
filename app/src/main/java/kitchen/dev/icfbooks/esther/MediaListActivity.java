@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import kitchen.dev.icfbooks.esther.dal.ApiClient;
 import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
 import kitchen.dev.icfbooks.esther.model.media.Media;
@@ -37,7 +39,7 @@ import java.util.UUID;
  * An activity representing a list of Items. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link ItemDetailActivity} representing
+ * lead to a {@link DetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
@@ -51,6 +53,8 @@ public class MediaListActivity extends AppCompatActivity {
     private List<Media> itemList;
     private ApiClient api;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -61,6 +65,8 @@ public class MediaListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         api = ApiClient.getInstance(getBaseContext());
 
@@ -138,7 +144,8 @@ public class MediaListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        //TODO activate about menu
+        //getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 

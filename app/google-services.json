@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "410770486036",
+    "firebase_url": "https://icf-esther-book-app.firebaseio.com",
+    "project_id": "icf-esther-book-app",
+    "storage_bucket": "icf-esther-book-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410770486036:android:aa54deea9a8477fb",
+        "android_client_info": {
+          "package_name": "kitchen.dev.icfbooks.esther"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410770486036-m8q0hj97cmiq7jmpkuhg1pp9b8o8u770.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrzNa7EhCn9bboqu-FbP7TBuDuVePctUo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

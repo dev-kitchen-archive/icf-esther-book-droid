@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kitchen.dev.icfbooks.esther">
+    package="kitchen.dev.icfbooks.esther" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -9,17 +9,19 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MediaListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +33,7 @@
             android:label="@string/title_item_detail"
             android:parentActivityName=".MediaListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
@@ -39,7 +41,7 @@
         <activity
             android:name=".BarcodeScannerActivity"
             android:parentActivityName=".MediaListActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
@@ -50,7 +52,7 @@
             android:label="@string/title_activity_splash_screen"
             android:parentActivityName=".MediaListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/FullscreenTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MediaListActivity" />
@@ -59,7 +61,7 @@
             android:name=".AboutActivity"
             android:label="@string/menu_about"
             android:parentActivityName=".MediaListActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -67,7 +69,7 @@
         </activity>
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName=".MediaListActivity">
+            android:parentActivityName=".MediaListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kitchen.dev.icfbooks.esther.MediaListActivity" />
@@ -75,9 +77,13 @@
         <activity
             android:name=".PlaybackActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape"
             android:label="@string/title_activity_playback"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullscreenTheme" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
