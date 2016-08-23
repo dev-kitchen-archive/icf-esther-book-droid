@@ -79,12 +79,14 @@ public class MediaListActivity extends AppCompatActivity {
         itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();
         setContentView(R.layout.activity_item_list);
 
+        final Context context = this;
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //start barcode scanner on click
-                Intent intent = new Intent(MediaListActivity.this, BarcodeScannerActivity.class);
+                Intent intent = new Intent(context, BarcodeScannerActivity.class);
                 startActivityForResult(intent, SCANNER_REQUEST);
             }
         });
@@ -109,21 +111,22 @@ public class MediaListActivity extends AppCompatActivity {
         if (requestCode == SCANNER_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                final Toast loadingToast = Toast.makeText(getBaseContext(),R.string.loading,Toast.LENGTH_LONG);
+                final Context context = this;
+                final Toast loadingToast = Toast.makeText(getApplicationContext(),R.string.loading,Toast.LENGTH_LONG);
                 Uri url = Uri.parse(data.getStringExtra("url"));
                 api.getMedia(url.getLastPathSegment(), new ApiResultHandler<Media>() {
                     @Override
                     public void onResult(Media result) {
                         loadingToast.cancel();
-                        MediaFactory media = MediaFactory.getInstance(getBaseContext());
+                        MediaFactory media = MediaFactory.getInstance(getApplicationContext());
 
                         if (media.getItem(result.getId()) == null) {
                             media.saveItem(result);
                         }
 
-                        Intent intent = new Intent(getBaseContext(), PlaybackActivity.class);
+                        Intent intent = new Intent(context, PlaybackActivity.class);
                         intent.putExtra(PlaybackActivity.ARG_URL, ((Media<MediaTypes.Movie>)result).getData().getFile_url());
-                        getBaseContext().startActivity(intent);
+                        context.startActivity(intent);
 
                         //Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         //intent.putExtra(DetailActivity.ARG_DETAIL_ID, result.getId().toString());
@@ -134,7 +137,7 @@ public class MediaListActivity extends AppCompatActivity {
                     @Override
                     public void onError(Object error) {
                         loadingToast.cancel();
-                        Toast.makeText(MediaListActivity.this, getString(R.string.invalid_qr_error), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.invalid_qr_error), Toast.LENGTH_LONG).show();
                     }
                 });
                 //TODO: act on recieved url (extract UUID, start intent for detail, detail getItem from factory)
@@ -152,23 +155,25 @@ public class MediaListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getTitle().toString().equals(this.getString(R.string.menu_about))) {
-            Intent intent = new Intent(getBaseContext(), AboutActivity.class);
+            Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(itemList));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(itemList,this));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<Media> mValues;
+        private final Context mContext;
 
-        public SimpleItemRecyclerViewAdapter(List<Media> items) {
+        public SimpleItemRecyclerViewAdapter(List<Media> items, Context context) {
             mValues = items;
+            mContext = context;
         }
 
         @Override
@@ -188,9 +193,9 @@ public class MediaListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), PlaybackActivity.class);
+                    Intent intent = new Intent(mContext, PlaybackActivity.class);
                     intent.putExtra(PlaybackActivity.ARG_URL, ((Media<MediaTypes.Movie>)holder.mItem).getData().getFile_url());
-                    getBaseContext().startActivity(intent);
+                    mContext.startActivity(intent);
                     //Context context = v.getContext();
                     //Intent intent = new Intent(context, DetailActivity.class);
                     //intent.putExtra(DetailActivity.ARG_DETAIL_ID, holder.mItem.getId().toString());
@@ -202,7 +207,7 @@ public class MediaListActivity extends AppCompatActivity {
                 holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        MediaFactory.getInstance(getBaseContext()).deleteItem(holder.mItem);
+                        MediaFactory.getInstance(getApplicationContext()).deleteItem(holder.mItem);
 
                         Intent intent = getIntent();
                         finish();

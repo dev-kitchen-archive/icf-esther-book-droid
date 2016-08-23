@@ -28,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             UUID id = UUID.fromString(getIntent().getStringExtra(DetailActivity.ARG_DETAIL_ID));
-            media = MediaFactory.getInstance(getBaseContext()).getItem(id);
+            media = MediaFactory.getInstance(getApplicationContext()).getItem(id);
             loadMedia();
         }
     }
@@ -36,13 +36,13 @@ public class DetailActivity extends AppCompatActivity {
     private void loadMedia(){
         this.setTitle(media.getTitle());
         ImageView img = (ImageView) findViewById(R.id.detail_thumbnail);
-        Bitmap bmp = BitmapFactory.decodeFile(getBaseContext().getFileStreamPath(media.getId().toString()).getAbsolutePath());
+        Bitmap bmp = BitmapFactory.decodeFile(this.getFileStreamPath(media.getId().toString()).getAbsolutePath());
         img.setImageBitmap(bmp);
     }
 
     public void onThumbnailClick(View view) {
-        Intent intent = new Intent(getBaseContext(), PlaybackActivity.class);
+        Intent intent = new Intent(this, PlaybackActivity.class);
         intent.putExtra(PlaybackActivity.ARG_URL, media.getData().getFile_url());
-        getBaseContext().startActivity(intent);
+        this.startActivity(intent);
     }
 }
