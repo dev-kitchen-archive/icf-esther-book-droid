@@ -146,6 +146,16 @@ public class MediaListActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();
+        View recyclerView = findViewById(R.id.item_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+
+        super.onResume();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //TODO activate about menu
         //getMenuInflater().inflate(R.menu.main_menu, menu);
