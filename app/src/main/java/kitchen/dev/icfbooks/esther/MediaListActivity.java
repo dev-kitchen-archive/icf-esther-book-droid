@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,9 +19,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -103,6 +106,13 @@ public class MediaListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
+
+        TextView title = (TextView) findViewById(R.id.no_video_title);
+        TextView text = (TextView) findViewById(R.id.no_video_text);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"ArnhemPro-Black.ttf");
+        title.setTypeface(typeface);
+        text.setTypeface(typeface);
     }
 
     // get url from barcode and add new item
@@ -175,6 +185,9 @@ public class MediaListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+        ViewAnimator animator = (ViewAnimator)findViewById(R.id.ViewAnimator);
+        animator.setDisplayedChild(itemList.size() > 0 ? 1 : 0);
+
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(itemList,this));
     }
 

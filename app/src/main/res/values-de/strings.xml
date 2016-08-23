@@ -9,4 +9,6 @@
     <string name="menu_about">Über uns</string>
     <string name="invalid_qr_error">Upps, dieser QR Code scheint nicht mit dieser App kompatibel zu sein...</string>
     <string name="loading">Inhalt wird geladen..</string>
+    <string name="title_no_media_scanned">Noch keine Videos vorhanden</string>
+    <string name="no_media_explanation">Verwende den Plus-Button um zusätzliche Videos zum Buch anzuzeigen</string>
 </resources>

@@ -9,4 +9,6 @@
     <string name="menu_about">About</string>
     <string name="invalid_qr_error">Unknown QR Code</string>
     <string name="loading">loading content...</string>
+    <string name="title_no_media_scanned">No video available</string>
+    <string name="no_media_explanation">Please press the plus button to add additional videos</string>
 </resources>
