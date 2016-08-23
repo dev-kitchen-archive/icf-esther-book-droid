@@ -28,12 +28,14 @@ import kitchen.dev.icfbooks.esther.dal.SqlHelper;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class SplashScreen extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
+
+    public final static String SHARED_PREF_SETUP_FINISHED = "SetupFinished";
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -81,28 +83,30 @@ public class SplashScreen extends AppCompatActivity {
         mImage.startAnimation(anim);
 
 
+        final SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
+
         final Activity activity = this;
         new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                ApiClient api = ApiClient.getInstance(getBaseContext());
-                getBaseContext().deleteDatabase(SqlHelper.DATABASE_NAME);
-                final SqlHelper sqlHelper = new SqlHelper(getBaseContext());
-                final SQLiteDatabase sql = sqlHelper.getWritableDatabase();
+                if (!pref.getBoolean(SHARED_PREF_SETUP_FINISHED, false)) {
+                    ApiClient api = ApiClient.getInstance(getBaseContext());
+                    getBaseContext().deleteDatabase(SqlHelper.DATABASE_NAME);
+                    final SqlHelper sqlHelper = new SqlHelper(getBaseContext());
+                    final SQLiteDatabase sql = sqlHelper.getWritableDatabase();
+
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putBoolean(SHARED_PREF_SETUP_FINISHED, true);
+                    editor.commit();
+                }
 
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
                         Intent intent = new Intent(activity, MediaListActivity.class);
-                        SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = pref.edit();
-                        editor.putBoolean(MediaListActivity.SHARED_PREF_SETUP_FINISHED, true);
-                        editor.commit();
-                        Bundle bundle = new Bundle();
-                        bundle.putInt(MediaListActivity.BUNDLE_BOOK_ID, 1);
-                        startActivity(intent, bundle);
+                        startActivity(intent);
                     }
-                }, 4000);
+                }, 2000);
 
                 return null;
             }

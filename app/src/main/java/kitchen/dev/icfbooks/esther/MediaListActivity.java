@@ -7,19 +7,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.FloatingActionButton;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +34,6 @@ import kitchen.dev.icfbooks.esther.model.media.MediaTypes;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * An activity representing a list of Items. This activity
@@ -50,9 +46,6 @@ import java.util.UUID;
 public class MediaListActivity extends AppCompatActivity {
 
     static final int SCANNER_REQUEST = 1;
-
-    public final static String BUNDLE_BOOK_ID = "BookID";
-    public final static String SHARED_PREF_SETUP_FINISHED = "SetupFinished";
 
     private List<Media> itemList;
     private ApiClient api;
@@ -68,17 +61,10 @@ public class MediaListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         api = ApiClient.getInstance(getBaseContext());
-
-        if (!pref.getBoolean(SHARED_PREF_SETUP_FINISHED, false)) {
-            Intent intent = new Intent(this, SplashScreen.class);
-            startActivity(intent);
-            return;
-        }
 
         itemList = (ArrayList<Media>) MediaFactory.getInstance(getApplicationContext()).getAllItems();
         setContentView(R.layout.activity_item_list);
