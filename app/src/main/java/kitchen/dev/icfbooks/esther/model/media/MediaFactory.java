@@ -59,8 +59,6 @@ public class MediaFactory {
 
         Cursor c = db.query(MediaContract.MediaEntry.TABLE_NAME, projection, null, null, null, null, MediaContract.MediaEntry.COLUMN_NAME_ADDED_AT + " DESC", null);
 
-        c.moveToFirst();
-
         while (c.moveToNext()) {
             itemList.add(getMedia(c));
         }
