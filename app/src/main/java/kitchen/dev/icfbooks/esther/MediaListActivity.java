@@ -32,6 +32,7 @@ import kitchen.dev.icfbooks.esther.model.media.MediaFactory;
 import kitchen.dev.icfbooks.esther.model.media.MediaTypes;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -119,6 +120,8 @@ public class MediaListActivity extends AppCompatActivity {
                     public void onResult(Media result) {
                         loadingToast.cancel();
                         MediaFactory media = MediaFactory.getInstance(getApplicationContext());
+
+                        result.setAdded_at(new Date());
 
                         if (media.getItem(result.getId()) == null) {
                             media.saveItem(result);

@@ -18,6 +18,7 @@ public final class MediaContract {
                     MediaEntry.COLUMN_NAME_TYPE + TEXT_TYPE + "," +
                     MediaEntry.COLUMN_NAME_THUMB_URL + TEXT_TYPE+"," +
                     MediaEntry.COLUMN_NAME_UPDATED_AT + TEXT_TYPE+"," +
+                    MediaEntry.COLUMN_NAME_ADDED_AT + TEXT_TYPE+"," +
                     MediaEntry.COLUMN_NAME_DATA + TEXT_TYPE + ")";
 
     public static final String SQL_DROP_MEDIA_TABLE = "DROP TABLE IF EXISTS " + MediaEntry.TABLE_NAME;
@@ -31,5 +32,6 @@ public final class MediaContract {
         public static final String COLUMN_NAME_THUMB_URL = "thumbUrl";
         public static final String COLUMN_NAME_DATA = "data";
         public static final String COLUMN_NAME_UPDATED_AT = "updated_at";
+        public static final String COLUMN_NAME_ADDED_AT = "added_at";
     }
 }

@@ -16,7 +16,7 @@ import kitchen.dev.icfbooks.esther.model.media.MediaContract;
  */
 public class SqlHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "data.db";
 
     public SqlHelper(Context context) {

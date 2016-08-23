@@ -13,19 +13,21 @@ public class Media<T> {
     private String teaser;
     private String thumbnail_url;
     private Date updated_at;
+    private Date added_at;
     private T data;
 
 
     public Media(){
     }
 
-    public Media(UUID id, String type, String title, String teaser, String thumbnail_url, Date updated_at) {
+    public Media(UUID id, String type, String title, String teaser, String thumbnail_url, Date updated_at, Date added_at) {
         this.id = id;
         this.type = type;
         this.title = title;
         this.teaser = teaser;
         this.thumbnail_url = thumbnail_url;
         this.updated_at = updated_at;
+        this.added_at = added_at;
     }
 
     public UUID getId() {
@@ -74,6 +76,14 @@ public class Media<T> {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Date getAdded_at() {
+        return added_at;
+    }
+
+    public void setAdded_at(Date added_at) {
+        this.added_at = added_at;
     }
 
     public void setData(T data) {

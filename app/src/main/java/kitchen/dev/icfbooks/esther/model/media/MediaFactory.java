@@ -52,10 +52,12 @@ public class MediaFactory {
                 MediaContract.MediaEntry.COLUMN_NAME_TEASER,
                 MediaContract.MediaEntry.COLUMN_NAME_TYPE,
                 MediaContract.MediaEntry.COLUMN_NAME_THUMB_URL,
-                MediaContract.MediaEntry.COLUMN_NAME_DATA
+                MediaContract.MediaEntry.COLUMN_NAME_DATA,
+                MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT,
+                MediaContract.MediaEntry.COLUMN_NAME_ADDED_AT
         };
 
-        Cursor c = db.query(MediaContract.MediaEntry.TABLE_NAME, projection, null, null, null, null, null);
+        Cursor c = db.query(MediaContract.MediaEntry.TABLE_NAME, projection, null, null, null, null, MediaContract.MediaEntry.COLUMN_NAME_ADDED_AT + " DESC", null);
 
         c.moveToFirst();
 
@@ -86,7 +88,8 @@ public class MediaFactory {
                 MediaContract.MediaEntry.COLUMN_NAME_TYPE,
                 MediaContract.MediaEntry.COLUMN_NAME_THUMB_URL,
                 MediaContract.MediaEntry.COLUMN_NAME_DATA,
-                MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT
+                MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT,
+                MediaContract.MediaEntry.COLUMN_NAME_ADDED_AT
         };
 
         // Define 'where' part of query.
@@ -128,12 +131,14 @@ public class MediaFactory {
         String thumbUrl = cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_THUMB_URL));
         String data = cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_DATA));
         Date date = new Date();
+        Date added = new Date();
         try {
             date = dbHelper.convertToDateTime(cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT)));
+            added = dbHelper.convertToDateTime(cursor.getString(cursor.getColumnIndexOrThrow(MediaContract.MediaEntry.COLUMN_NAME_ADDED_AT)));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return createItem(uuid, type, title, teaser, thumbUrl, date, data);
+        return createItem(uuid, type, title, teaser, thumbUrl, date,added, data);
     }
 
     public void saveItem(Media media) {
@@ -149,12 +154,13 @@ public class MediaFactory {
         values.put(MediaContract.MediaEntry.COLUMN_NAME_THUMB_URL, media.getThumbnail_url());
         values.put(MediaContract.MediaEntry.COLUMN_NAME_DATA, new Gson().toJson(media.getData()));
         values.put(MediaContract.MediaEntry.COLUMN_NAME_UPDATED_AT, dbHelper.convertFromDateTime(media.getUpdated_at()));
+        values.put(MediaContract.MediaEntry.COLUMN_NAME_ADDED_AT, dbHelper.convertFromDateTime(media.getAdded_at()));
 
         // Insert the new row, returning the primary key value of the new row
         db.insert(MediaContract.MediaEntry.TABLE_NAME, null, values);
     }
 
-    public Media createItem(UUID id, String type, String title, String teaser, String thumbnail_url, Date updated_at, String data) {
+    public Media createItem(UUID id, String type, String title, String teaser, String thumbnail_url, Date updated_at, Date added_at, String data) {
         Media media = null;
         Gson gson = new GsonBuilder().create();
         switch (type) {
@@ -174,7 +180,7 @@ public class MediaFactory {
         media.setTeaser(teaser);
         media.setThumbnail_url(thumbnail_url);
         media.setUpdated_at(updated_at);
-
+        media.setAdded_at(added_at);
         return media;
     }
 
