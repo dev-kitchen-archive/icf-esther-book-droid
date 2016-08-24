@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Esther Book</string>
+    <string name="app_name">Esther Buch</string>
     <string name="intro_text_start">Esther in da House</string>
     <string name="chapter">Chapter</string>
-    <string name="intro_text_go">Start scanning</string>
     <string name="title_item_detail">Detail</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
     <string name="menu_about">About</string>
@@ -11,4 +10,16 @@
     <string name="loading">loading content...</string>
     <string name="title_no_media_scanned">No video available</string>
     <string name="no_media_explanation">Please press the plus button to add additional videos</string>
+    <string name="about_news">news</string>
+    <string name="about_newsletter_title">Stay informed</string>
+    <string name="about_newsletter_desc">Be the first to hear about new publications from Leo Bigger.</string>
+    <string name="about_newsletter_button">Newsletter signup</string>
+    <string name="about_author_title">Author</string>
+    <string name="about_developer">Developer</string>
+    <string name="about_author_desc">Leo Bigger and his wife Susanna are the Senior Pastors of ICF Zurich, a church with a weekly attendance of 3\'200 people in 7 different locations. Leo and two other pastors founded ICF Zurich In 1996. Together they have realized the dream of building «a Church at the heartbeat of time»</string>
+    <string name="about_church">Church</string>
+    <string name="about_dk_desc">The developer kitchen are five friends from ICF Zurich. They desire is to stay digitally on the cutting edge by realizing projects. Projects like this app.</string>
+    <string name="about_church_desc">ICF (International Christian Fellowship) is a non-denominational church with a biblical foundation that was birthed out of the vision to build a dynamic, tangible church that is right at the heartbeat of time.</string>
+    <string name="about_developer_page">Developers website</string>
+    <string name="about_store">ICF Online Store</string>
 </resources>
