@@ -86,7 +86,8 @@
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:paddingBottom="5dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:paddingTop="20dp" />
 
         <ImageView
             android:id="@+id/about_bigger_image"
@@ -150,7 +151,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:paddingTop="20dp" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -273,7 +275,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:paddingTop="20dp" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -319,6 +322,12 @@
             android:layout_height="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/colorPrimaryDark"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"

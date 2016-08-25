@@ -19,7 +19,7 @@
         <item name="android:textColorSecondaryInverse">@color/black</item>
         <item name="android:fitsSystemWindows">true</item>
 
-        <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
+        <item name="android:actionBarStyle">@style/AppTheme.ActionBar.Text</item>
         <item name="android:actionMenuTextColor">@color/black</item>
         <item name="android:statusBarColor">@color/status</item>
     </style>

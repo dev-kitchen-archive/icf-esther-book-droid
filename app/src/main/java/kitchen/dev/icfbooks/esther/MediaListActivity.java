@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.FloatingActionButton;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,6 +62,9 @@ public class MediaListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Workaround to set black title
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>"+ getString(R.string.title_esther)+"</font>"));
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
