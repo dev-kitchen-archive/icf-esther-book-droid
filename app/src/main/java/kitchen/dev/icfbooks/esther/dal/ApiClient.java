@@ -103,4 +103,33 @@ public class ApiClient {
     public Media getItem(String id) {
         return null;
     }
+
+    public void subscribeNewsletter(String name, String mail, final ApiResultHandler<Object> handler) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("email", mail);
+            obj.put("name", name);
+            obj.put("source", "android");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        queue.add(new JsonObjectRequest(Request.Method.POST, BASE_URL + getLanguage() + "/newsletter_subscriptions", obj, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                handler.onResult(true);
+            }
+        }
+                , new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.getCause() instanceof JSONException) {
+                    handler.onResult(null);
+                } else {
+                    handler.onError(error);
+                }
+            }
+        }));
+
+    }
 }

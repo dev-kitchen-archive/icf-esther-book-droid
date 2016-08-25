@@ -110,6 +110,7 @@ public class MediaListActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 final Context context = this;
                 final Toast loadingToast = Toast.makeText(getApplicationContext(),R.string.loading,Toast.LENGTH_LONG);
+                loadingToast.show();
                 Uri url = Uri.parse(data.getStringExtra("url"));
                 api.getMedia(url.getLastPathSegment(), new ApiResultHandler<Media>() {
                     @Override

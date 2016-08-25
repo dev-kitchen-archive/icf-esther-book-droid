@@ -22,4 +22,10 @@
     <string name="about_church_desc">ICF (International Christian Fellowship) ist eine überkonfessionelle Kirche auf biblischer Grundlage, die aus dem Traum entstanden ist, Kirche für die Menschen dynamisch, lebensnah und zeitgemäss zu gestalten.</string>
     <string name="about_developer_page">Website der Entwickler</string>
     <string name="about_store">ICF Online Store</string>
+    <string name="about_newsletter_success">Du hast dich erfolgreich für Leo Biggers Newsletter angemeldet.</string>
+    <string name="about_newsletter_failure">Momentan ist die Anmeldung nicht möglich, bitte versuche es zu einem späteren Zeitpunkt nochmals</string>
+    <string name="about_newsletter_invalid">Bitte überprüfe ob Name und Email-Adresse korrekt sind.</string>
+    <string name="about_newsletter_failure_title">Anmeldung nicht möglich</string>
+    <string name="about_newsletter_success_title">Danke</string>
+    <string name="button_OK">OK</string>
 </resources>
