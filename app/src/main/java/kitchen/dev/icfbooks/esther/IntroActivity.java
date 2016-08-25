@@ -20,64 +20,18 @@ import java.util.TimerTask;
 import kitchen.dev.icfbooks.esther.dal.ApiClient;
 import kitchen.dev.icfbooks.esther.dal.SqlHelper;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 public class IntroActivity extends AppCompatActivity {
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
-
     public final static String SHARED_PREF_SETUP_FINISHED = "SetupFinished";
-
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
-    /**
-     * Some older devices needs a small delay between UI widget updates
-     * and a change of the status and navigation bar.
-     */
-    private static final int UI_ANIMATION_DELAY = 300;
-    private ImageView mImage;
-
-    /*
-    image.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    SharedPreferences sharedPref = getActivity().getSharedPreferences("introDone",Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putBoolean("INTRO_DONE", true);
-                    editor.commit();
-
-                    Intent intent = new Intent(getActivity(), ItemListActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_intro);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.hide();
-        }
-
         final SharedPreferences pref = getSharedPreferences(getString(R.string.preferences_name), Context.MODE_PRIVATE);
 
-        mImage = (ImageView) findViewById(R.id.imageView);
-
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.fadein);
-
-        mImage.startAnimation(anim);
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         final Activity activity = this;
         new AsyncTask() {
@@ -94,13 +48,9 @@ public class IntroActivity extends AppCompatActivity {
                     editor.commit();
                 }
 
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
                         Intent intent = new Intent(activity, MediaListActivity.class);
                         startActivity(intent);
-                    }
-                }, 2000);
+
 
                 return null;
             }
@@ -109,18 +59,6 @@ public class IntroActivity extends AppCompatActivity {
             protected void onPostExecute(Object o) {
             }
         }.execute();
-
-        // Set up the user interaction to manually show or hide the system UI.
-        mImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        //findViewById(R.id.imageView).setOnTouchListener(mDelayHideTouchListener);
     }
 
 }

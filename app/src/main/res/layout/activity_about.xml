@@ -13,17 +13,6 @@
         android:paddingLeft="0dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="0dp">
-        <TextView
-            android:id="@+id/newsletter_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/about_news"
-            android:textAllCaps="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_margin="5dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"

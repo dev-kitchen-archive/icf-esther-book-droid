@@ -26,4 +26,5 @@
     <string name="about_newsletter_mail" translatable="false">Email</string>
     <string name="about_developer_page">Developers website</string>
     <string name="about_store">ICF Online Store</string>
+    <string name="title_esther" translatable="false">Esther</string>
 </resources>

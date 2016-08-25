@@ -96,9 +96,9 @@ public class MediaListActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.no_video_title);
         TextView text = (TextView) findViewById(R.id.no_video_text);
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(),"ArnhemPro-Black.ttf");
-        title.setTypeface(typeface);
-        text.setTypeface(typeface);
+        //Typeface typeface = Typeface.createFromAsset(getAssets(),"ArnhemPro-Black.ttf");
+        //title.setTypeface(typeface);
+        //text.setTypeface(typeface);
     }
 
     // get url from barcode and add new item

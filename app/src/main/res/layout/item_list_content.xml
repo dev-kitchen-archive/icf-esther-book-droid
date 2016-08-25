@@ -3,9 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingTop="5dp"
-    android:paddingRight="10dp"
     android:paddingBottom="5dp">
 
     <kitchen.dev.icfbooks.esther.view.SquaredImageView
@@ -13,6 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/list_thumbnail"
         android:scaleType="fitXY"
-        android:background="#CDE" />
+        android:background="#CDE"
+        android:cropToPadding="false" />
 
 </LinearLayout>
