@@ -4,9 +4,9 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/almost_white</item>
-        <item name="colorPrimaryDark">@color/colorAccent</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimaryInverse">@color/black</item>
+        <item name="colorPrimaryDark">@color/almost_white</item>
+        <item name="colorAccent">@color/almost_white</item>
+        <item name="android:textColorPrimaryInverse">@color/almost_white</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/black</item>

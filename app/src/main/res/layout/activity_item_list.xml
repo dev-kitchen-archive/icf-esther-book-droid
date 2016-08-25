@@ -72,7 +72,8 @@
         android:scaleType="center"
         android:src="@drawable/fab_add"
         android:tint="@color/white"
-        android:adjustViewBounds="false" />
+        android:adjustViewBounds="false"
+        app:backgroundTint="#000000" />
 
 
 </android.support.design.widget.CoordinatorLayout>
