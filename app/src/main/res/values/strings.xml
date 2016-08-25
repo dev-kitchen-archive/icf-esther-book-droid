@@ -33,4 +33,9 @@
     <string name="about_newsletter_failure_title">Sign up failed</string>
     <string name="button_OK">OK</string>
     <string name="about_newsletter_success_title">Thank you</string>
+    <string name="about_imprint">Imprint</string>
+    <string name="about_press" translatable="false">Fontis-Verlag</string>
+    <string name="about_author_follow">Follow Leo Bigger</string>
+    <string name="about_church_follow">Follow ICF Church</string>
+    <string name="about_church_worship">Follow ICF Worship</string>
 </resources>

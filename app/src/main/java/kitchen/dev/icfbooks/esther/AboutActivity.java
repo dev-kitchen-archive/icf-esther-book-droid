@@ -43,41 +43,144 @@ public class AboutActivity extends AppCompatActivity {
         ((LinearLayout)findViewById(R.id.about_author_blog)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent( Intent.ACTION_VIEW , Uri.parse("http://www.leobigger.com") ));
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                    builder.setTitle(getString(R.string.about_author_follow));
+              builder.setItems(new CharSequence[]{
+                      "Blog (leobigger.com)",
+                      "Instagram (@leobigger)",
+                      "Facebook (fb.com/Bigger.Leo)",
+              }, new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                      switch (i) {
+                          case 0:
+                              startActivity(new Intent( Intent.ACTION_VIEW , Uri.parse("http://www.leobigger.com") ));
+                              break;
+                          case 1:
+                              Uri uri = Uri.parse("http://instagram.com/_u/leobigger");
+                              Intent instaIntent = new Intent(Intent.ACTION_VIEW, uri);
+
+                              instaIntent.setPackage("com.instagram.android");
+
+                              try {
+                                  startActivity(instaIntent);
+                              } catch (ActivityNotFoundException e) {
+                                  startActivity(new Intent(Intent.ACTION_VIEW,
+                                          Uri.parse("http://instagram.com/leobigger")));
+                              }
+                              break;
+                          case 2:
+                              try {
+                                  context.getPackageManager()
+                                          .getPackageInfo("com.facebook.katana", 0); //Checks if FB is even installed.
+                                  startActivity(new Intent(Intent.ACTION_VIEW,
+                                          Uri.parse("fb://page/240588435984358")));
+                              } catch (Exception e) {
+                                  startActivity(new Intent(Intent.ACTION_VIEW,
+                                          Uri.parse("https://www.facebook.com/Bigger.Leo")));
+                              }
+                              break;
+                      }
+                  }
+              });
+                    builder.create().show();
             }
         });
 
-        ((LinearLayout)findViewById(R.id.about_author_insta)).setOnClickListener(new View.OnClickListener() {
+        ((LinearLayout)findViewById(R.id.about_church_follow)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("http://instagram.com/_u/leobigger");
-                Intent instaIntent = new Intent(Intent.ACTION_VIEW, uri);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                instaIntent.setPackage("com.instagram.android");
+                builder.setTitle(getString(R.string.about_church_follow));
+                builder.setItems(new CharSequence[]{
+                        "Web (icf.church)",
+                        "Instagram (@icfmovement)",
+                        "Facebook (fb.com/icfmovement)",
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case 0:
+                                startActivity(new Intent( Intent.ACTION_VIEW , Uri.parse("http://www.icf.church") ));
+                                break;
+                            case 1:
+                                Uri uri = Uri.parse("http://instagram.com/_u/icfmovement");
+                                Intent instaIntent = new Intent(Intent.ACTION_VIEW, uri);
 
-                try {
-                    startActivity(instaIntent);
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://instagram.com/leobigger")));
-                }
+                                instaIntent.setPackage("com.instagram.android");
+
+                                try {
+                                    startActivity(instaIntent);
+                                } catch (ActivityNotFoundException e) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW,
+                                            Uri.parse("http://instagram.com/icfmovement")));
+                                }
+                                break;
+                            case 2:
+                                try {
+                                    context.getPackageManager()
+                                            .getPackageInfo("com.facebook.katana", 0); //Checks if FB is even installed.
+                                    startActivity(new Intent(Intent.ACTION_VIEW,
+                                            Uri.parse("fb://page/102703242193")));
+                                } catch (Exception e) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW,
+                                            Uri.parse("https://www.facebook.com/icfmovement")));
+                                }
+                                break;
+                        }
+                    }
+                });
+                builder.create().show();
             }
         });
 
-        ((LinearLayout)findViewById(R.id.about_author_fb)).setOnClickListener(new View.OnClickListener() {
+        ((LinearLayout)findViewById(R.id.about_church_worship)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("fb:/profile/240588435984358");
-                Intent instaIntent = new Intent(Intent.ACTION_VIEW, uri);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                instaIntent.setPackage("com.facebook.katana");
+                builder.setTitle(getString(R.string.about_church_worship));
+                builder.setItems(new CharSequence[]{
+                        "Web (icf-worship.com)",
+                        "Instagram (@icfworship)",
+                        "Facebook (fb.com/ICFWorship)",
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case 0:
+                                startActivity(new Intent( Intent.ACTION_VIEW , Uri.parse("http://www.icf-worship.com") ));
+                                break;
+                            case 1:
+                                Uri uri = Uri.parse("http://instagram.com/_u/icfworship");
+                                Intent instaIntent = new Intent(Intent.ACTION_VIEW, uri);
 
-                try {
-                    startActivity(instaIntent);
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("https://www.facebook.com/Bigger.Leo")));
-                }
+                                instaIntent.setPackage("com.instagram.android");
+
+                                try {
+                                    startActivity(instaIntent);
+                                } catch (ActivityNotFoundException e) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW,
+                                            Uri.parse("http://instagram.com/icfworship")));
+                                }
+                                break;
+                            case 2:
+                                try {
+                                    context.getPackageManager()
+                                            .getPackageInfo("com.facebook.katana", 0); //Checks if FB is even installed.
+                                    startActivity(new Intent(Intent.ACTION_VIEW,
+                                            Uri.parse("fb://page/570890826269611")));
+                                } catch (Exception e) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW,
+                                            Uri.parse("https://www.facebook.com/ICFWorship")));
+                                }
+                                break;
+                        }
+                    }
+                });
+                builder.create().show();
             }
         });
 
@@ -92,6 +195,20 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent( Intent.ACTION_VIEW , Uri.parse("https://dev.kitchen") ));
+            }
+        });
+
+        ((LinearLayout)findViewById(R.id.about_imprint)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent( Intent.ACTION_VIEW , Uri.parse("https://www.icf.church/impressum") ));
+            }
+        });
+
+        ((LinearLayout)findViewById(R.id.about_press)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent( Intent.ACTION_VIEW , Uri.parse("https://www.fontis-verlag.com") ));
             }
         });
 

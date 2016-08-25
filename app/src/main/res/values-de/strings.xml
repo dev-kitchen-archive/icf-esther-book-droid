@@ -28,4 +28,8 @@
     <string name="about_newsletter_failure_title">Anmeldung nicht möglich</string>
     <string name="about_newsletter_success_title">Danke</string>
     <string name="button_OK">OK</string>
+    <string name="about_imprint">Impressum</string>
+    <string name="about_author_follow">Leo Bigger folgen</string>
+    <string name="about_church_follow">ICF Church folgen</string>
+    <string name="about_church_worship">ICF Worship folgen</string>
 </resources>
