@@ -1,0 +1,16 @@
+language: android
+android:
+  components:
+  - tools
+  - build-tools-23.0.2
+  - platform-tools
+  - android-23
+  script:
+  - "./gradlew build connectedCheck"
+deploy:
+  provider: releases
+  api_key:
+    secure: e0Gm9xxx5k4+j3aSkHJZ8pcONtT/dxSHdpCxeTDXj0ByxyuCtTZDGgTp98O6Lc8aCwjig6KxOPNXwBgWT4KebB8ENaRRAL9FsTFd5GClnFFH5W/4LHUqIqO+F4HxlWqzO4gIWTA4Qp4/jLRoK/DiT0OiTNliDA6B3u9sr+NdQpjXJoH44MXOvG/TYH5DCmZz0zq43I3YDAoQuiGDVJAqJkljHyzIXnNsnS4Gv9g95u7ZM9iMOVtjAoVv5SFFSCKCKFvTMMrb4crSj038pul8LwACv52FtVL5PJz97FCYtxJHfCdPBMLUB5fiDQhY/fTDnSbFU26Md/jpdI0SKD06jeWaqq6Div3ue4eGEy5pL+MkxtQ0fGszs+Z19znYtDBzBrdkFB3rAhqOteXaHbmpy4NBsRIJp6xQ2ATF1Gcaj2yMa7nRvdxUqg2Arp58GeciUalbCv615q4Jy49kFef4OtDLhgrXavMlWgD1O6cTw403SqFq9a8onARDXqIn4CJgyFnBtWFQK2MG3te/3a+XaAh/ht8P4cyQR4E5ygiSi81qwFVRMQPiSPi1i25dNCeq7gBb+7eSNkjPF+VF8hQarJetp5xCy759RHK4jDSTljsxwVjNTIgpmiW66GTeqZRZrAi5Y9K5d/TIzaiExmzO2s02WhERLpP5jZBnEWkU/m4=
+  file: app/build/apk/app-release-unsigned.apk
+  on:
+    repo: dev-kitchen/icf-books-droid

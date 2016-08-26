@@ -5,24 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".MediaListActivity"
+    android:background="#ffffff">
+    <ViewAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ViewAnimator"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <FrameLayout
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1"
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingBottom="25dp">
+
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="170dp"
+                android:id="@+id/imageView2"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/phone_scanner"
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/title_no_media_scanned"
+                android:id="@+id/no_video_title"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/no_media_explanation"
+                android:id="@+id/no_video_text"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/item_list" />
+            <include layout="@layout/item_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+                android:layout_marginBottom="-6dp" />
+
     </FrameLayout>
+
+    </ViewAnimator>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:scaleType="center"
+        android:src="@drawable/fab_add"
+        android:tint="@color/white"
+        android:adjustViewBounds="false"
+        app:backgroundTint="#000000" />
 
 
 </android.support.design.widget.CoordinatorLayout>

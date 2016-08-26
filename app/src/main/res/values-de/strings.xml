@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Esther Buch</string>
+    <string name="intro_text_start">Esther im Haus</string>
+    <string name="chapter">Kapitel</string>
+    <string name="title_activity_splash_screen">Splash Screen</string>
+    <string name="title_item_detail">Details</string>
+    <string name="menu_about">Über uns</string>
+    <string name="invalid_qr_error">Upps, dieser QR Code scheint nicht mit dieser App kompatibel zu sein...</string>
+    <string name="loading">Inhalt wird geladen..</string>
+    <string name="title_no_media_scanned">Noch keine Videos vorhanden</string>
+    <string name="no_media_explanation">Verwende den Plus-Button um zusätzliche Videos zum Buch anzuzeigen</string>
+    <string name="about_news">news</string>
+    <string name="about_newsletter_desc">Erhalte als erster Informationen zu Leo Biggers neuen Publikationen.</string>
+    <string name="about_newsletter_title">Bleibe informiert</string>
+    <string name="about_newsletter_button">Newsletter anmelden</string>
+    <string name="about_author_title">Autor</string>
+    <string name="about_developer">Entwickler</string>
+    <string name="about_author_desc">Leo Bigger und seine Frau Susanna sind leitende Pastoren des ICF Zürich, einer Kirche mit 3200 Besuchern pro Wochenende in 7 Locations, und Leiter des ICF Movement. Im Jahr 1996 gründeten Leo und zwei weitere Pastoren ICF Zürich. Damit verwirklichten sie den Traum von einer «Kirche am Puls der Zeit».</string>
+    <string name="about_church">Kirche</string>
+    <string name="about_dk_desc">Die Entwicklerküche. Fünf Freunde aus dem ICF Zürich die sich wünschen auch digital am Puls der Zeit zu bleiben. Sie realisieren gemeinsam Projekte, so wie auch diese App.</string>
+    <string name="about_church_desc">ICF (International Christian Fellowship) ist eine überkonfessionelle Kirche auf biblischer Grundlage, die aus dem Traum entstanden ist, Kirche für die Menschen dynamisch, lebensnah und zeitgemäss zu gestalten.</string>
+    <string name="about_developer_page">Website der Entwickler</string>
+    <string name="about_store">ICF Online Store</string>
+    <string name="about_newsletter_success">Du hast dich erfolgreich für Leo Biggers Newsletter angemeldet.</string>
+    <string name="about_newsletter_failure">Momentan ist die Anmeldung nicht möglich, bitte versuche es zu einem späteren Zeitpunkt nochmals</string>
+    <string name="about_newsletter_invalid">Bitte überprüfe ob Name und Email-Adresse korrekt sind.</string>
+    <string name="about_newsletter_failure_title">Anmeldung nicht möglich</string>
+    <string name="about_newsletter_success_title">Danke</string>
+    <string name="button_OK">OK</string>
+    <string name="about_imprint">Impressum</string>
+    <string name="about_author_follow">Leo Bigger folgen</string>
+    <string name="about_church_follow">ICF Church folgen</string>
+    <string name="about_church_worship">ICF Worship folgen</string>
+</resources>
