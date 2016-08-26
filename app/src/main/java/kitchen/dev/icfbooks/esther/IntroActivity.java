@@ -48,8 +48,13 @@ public class IntroActivity extends AppCompatActivity {
                     editor.commit();
                 }
 
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
                         Intent intent = new Intent(activity, MediaListActivity.class);
                         startActivity(intent);
+                    }
+                }, 2000);
 
 
                 return null;
