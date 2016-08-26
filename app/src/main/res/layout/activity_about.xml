@@ -22,9 +22,10 @@
             <ImageView
                 android:id="@+id/about_newsletter_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/newsletter" />
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@drawable/newsletter"
+                android:adjustViewBounds="true" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -92,9 +93,10 @@
         <ImageView
             android:id="@+id/about_bigger_image"
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bigger_family" />
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:src="@drawable/bigger_family"
+            android:adjustViewBounds="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -156,11 +158,12 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:id="@+id/about_church_image"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:visibility="visible"
-            android:src="@drawable/church" />
+            android:src="@drawable/church"
+            android:adjustViewBounds="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -278,10 +281,12 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:id="@+id/about_dk_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/devkitchen" />
+            android:scaleType="centerInside"
+            android:src="@drawable/devkitchen"
+            android:nestedScrollingEnabled="false"
+            android:adjustViewBounds="true" />
 
         <TextView
             android:layout_width="wrap_content"

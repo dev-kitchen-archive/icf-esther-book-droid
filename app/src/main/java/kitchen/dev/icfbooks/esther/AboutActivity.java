@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.zxing.common.StringUtils;
 
 import kitchen.dev.icfbooks.esther.dal.ApiClient;
@@ -32,9 +33,13 @@ import kitchen.dev.icfbooks.esther.dal.ApiResultHandler;
 
 public class AboutActivity extends AppCompatActivity {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         //Workaround to set black title
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>"+ getString(R.string.menu_about)+"</font>"));
@@ -248,6 +253,9 @@ public class AboutActivity extends AppCompatActivity {
                 ApiClient.getInstance(context).subscribeNewsletter(name, mail, new ApiResultHandler<Object>() {
                     @Override
                     public void onResult(Object result) {
+                        Bundle payload = new Bundle();
+                        mFirebaseAnalytics.logEvent("NEWSLETTER",payload);
+
                         ((TextView)findViewById(R.id.about_newsletter_name)).setText("");
                         ((TextView)findViewById(R.id.about_newsletter_mail)).setText("");
                         builder.setPositiveButton(getString(R.string.button_OK), new DialogInterface.OnClickListener() {
