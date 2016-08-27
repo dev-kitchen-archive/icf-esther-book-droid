@@ -1,20 +1,10 @@
 package kitchen.dev.icfbooks.esther;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
-import android.view.Gravity;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup.LayoutParams;
@@ -23,7 +13,9 @@ import android.widget.Toast;
 import org.videolan.libvlc.IVLCVout;
 import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.Media;
-import org.videolan.libvlc.MediaPlayer;
+
+import kitchen.dev.icfbooks.esther.MyMediaPlayer;
+import android.widget.MediaController;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -40,10 +32,11 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
 
     // media player
     private LibVLC libvlc;
-    private MediaPlayer mMediaPlayer = null;
+    private MyMediaPlayer mMediaPlayer = null;
     private int mVideoWidth;
     private int mVideoHeight;
-    private final static int VideoSizeChanged = -1;
+
+    private MediaController mMediaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +136,7 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
             holder.setKeepScreenOn(true);
 
             // Create media player
-            mMediaPlayer = new MediaPlayer(libvlc);
+            mMediaPlayer = new MyMediaPlayer(libvlc);
             mMediaPlayer.setEventListener(mPlayerListener);
 
             // Set up video output
@@ -151,6 +144,11 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
             vout.setVideoView(mSurface);
             vout.addCallback(this);
             vout.attachViews();
+
+            //bind to MediaController
+            mMediaController = new MediaController(this);
+            mMediaController.setAnchorView(mSurface);
+            mMediaController.setMediaPlayer(mMediaPlayer);
 
             Media m = new Media(libvlc, Uri.parse(media));
             mMediaPlayer.setMedia(m);
@@ -179,7 +177,7 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
      * Events
      *************/
 
-    private MediaPlayer.EventListener mPlayerListener = new MyPlayerListener(this);
+    private MyMediaPlayer.EventListener mPlayerListener = (MyMediaPlayer.EventListener) new MyPlayerListener(this);
 
     @Override
     public void onNewLayout(IVLCVout vout, int width, int height, int visibleWidth, int visibleHeight, int sarNum, int sarDen) {
@@ -202,7 +200,7 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
 
     }
 
-    private static class MyPlayerListener implements MediaPlayer.EventListener {
+    private static class MyPlayerListener implements MyMediaPlayer.EventListener {
     private WeakReference<PlaybackActivity> mOwner;
 
     public MyPlayerListener(PlaybackActivity owner) {
@@ -210,16 +208,16 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
     }
 
     @Override
-    public void onEvent(MediaPlayer.Event event) {
+    public void onEvent(MyMediaPlayer.Event event) {
         PlaybackActivity player = mOwner.get();
 
         switch(event.type) {
-            case MediaPlayer.Event.EndReached:
+            case MyMediaPlayer.Event.EndReached:
                 player.releasePlayer();
                 break;
-            case MediaPlayer.Event.Playing:
-            case MediaPlayer.Event.Paused:
-            case MediaPlayer.Event.Stopped:
+            case MyMediaPlayer.Event.Playing:
+            case MyMediaPlayer.Event.Paused:
+            case MyMediaPlayer.Event.Stopped:
             default:
                 break;
         }
