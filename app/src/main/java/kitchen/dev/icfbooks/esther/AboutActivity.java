@@ -51,9 +51,6 @@ public class AboutActivity extends AppCompatActivity {
 
         final Context context = this;
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(),"ArnhemPro-Black.ttf");
-        TextView title = (TextView) findViewById(R.id.about_newsletter_title);
-        title.setTypeface(typeface);
 
         ((LinearLayout)findViewById(R.id.about_author_blog)).setOnClickListener(new View.OnClickListener() {
             @Override
