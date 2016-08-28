@@ -119,6 +119,10 @@ public class MediaListActivity extends AppCompatActivity {
                 api.getMedia(url.getLastPathSegment(), new ApiResultHandler<Media>() {
                     @Override
                     public void onResult(Media result) {
+                        Bundle payload = new Bundle();
+                        payload.putString(FirebaseAnalytics.Param.ITEM_ID,result.getId().toString());
+                        payload.putString(FirebaseAnalytics.Param.ITEM_NAME,result.getTitle());
+                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.UNLOCK_ACHIEVEMENT,payload);
                         loadingToast.cancel();
                         MediaFactory media = MediaFactory.getInstance(getApplicationContext());
 
@@ -209,6 +213,10 @@ public class MediaListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Bundle payload = new Bundle();
+                    payload.putString(FirebaseAnalytics.Param.ITEM_ID,holder.mItem.getId().toString());
+                    payload.putString(FirebaseAnalytics.Param.ITEM_NAME,holder.mItem.getTitle());
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM,payload);
                     Intent intent = new Intent(mContext, PlaybackActivity.class);
                     intent.putExtra(PlaybackActivity.ARG_URL, ((Media<MediaTypes.Movie>)holder.mItem).getData().getFile_url());
                     mContext.startActivity(intent);
