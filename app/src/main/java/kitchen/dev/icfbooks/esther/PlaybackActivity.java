@@ -5,8 +5,10 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
     private int mVideoWidth;
     private int mVideoHeight;
 
+    //private View mVideoView;
     private MediaController mMediaController;
 
     @Override
@@ -49,6 +52,8 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
         mVideoUrl = intent.getExtras().getString(ARG_URL);
 
         mSurface = (SurfaceView) findViewById(R.id.surface);
+        //mVideoView = findViewById(R.id.videoview);
+
         holder = mSurface.getHolder();
     }
 
@@ -149,6 +154,8 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
             mMediaController = new MediaController(this);
             mMediaController.setAnchorView(mSurface);
             mMediaController.setMediaPlayer(mMediaPlayer);
+            mMediaController.setEnabled(true);
+            mMediaController.show();
 
             Media m = new Media(libvlc, Uri.parse(media));
             mMediaPlayer.setMedia(m);
