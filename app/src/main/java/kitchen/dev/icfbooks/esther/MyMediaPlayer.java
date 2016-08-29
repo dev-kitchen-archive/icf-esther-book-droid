@@ -16,22 +16,23 @@ public class MyMediaPlayer extends MediaPlayer implements MediaController.MediaP
 
     @Override
     public void start() {
-        super.play();
+        play();
     }
 
     @Override
     public int getDuration() {
-        return (int) super.getLength();
+        return (int) getLength();
     }
 
     @Override
     public int getCurrentPosition() {
-        return (int) super.getPosition();
+        float pos = getPosition();
+        return (int)(pos * getDuration());
     }
 
     @Override
     public void seekTo(int i) {
-        super.setPosition((float) i);
+        setPosition((float) i/getDuration());
     }
 
     @Override

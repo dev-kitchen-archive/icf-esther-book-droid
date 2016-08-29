@@ -5,11 +5,12 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.videolan.libvlc.IVLCVout;
@@ -45,6 +46,10 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_playback);
 
         // Receive path to play from intent
@@ -52,10 +57,16 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
         mVideoUrl = intent.getExtras().getString(ARG_URL);
 
         mSurface = (SurfaceView) findViewById(R.id.surface);
-        //mVideoView = findViewById(R.id.videoview);
+        mSurface.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                mMediaController.show(7500);
+            }
+        });
 
         holder = mSurface.getHolder();
     }
+
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -155,7 +166,6 @@ public class PlaybackActivity extends AppCompatActivity implements IVLCVout.Call
             mMediaController.setAnchorView(mSurface);
             mMediaController.setMediaPlayer(mMediaPlayer);
             mMediaController.setEnabled(true);
-            mMediaController.show();
 
             Media m = new Media(libvlc, Uri.parse(media));
             mMediaPlayer.setMedia(m);
