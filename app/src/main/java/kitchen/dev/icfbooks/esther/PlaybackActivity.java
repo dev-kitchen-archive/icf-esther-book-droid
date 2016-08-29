@@ -1,5 +1,6 @@
 package kitchen.dev.icfbooks.esther;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +60,12 @@ public class PlaybackActivity extends AppCompatActivity {
             video.requestFocus();
             video.start();
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startActivity(new Intent(this,MediaListActivity.class));
     }
 
     @Override
