@@ -48,7 +48,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
 
         //Workaround to set black title
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>"+ getString(R.string.title_esther)+"</font>"));
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_back_material);
         upArrow.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 

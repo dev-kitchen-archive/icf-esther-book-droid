@@ -6,9 +6,9 @@ android {
     defaultConfig {
         applicationId "kitchen.dev.icfbooks.esther"
         minSdkVersion 16
-        targetSdkVersion 23
-        versionCode 14
-        versionName '1.0.1'
+        targetSdkVersion 24
+        versionCode 16
+        versionName '1.0.3'
         multiDexEnabled true
     }
     buildTypes {
