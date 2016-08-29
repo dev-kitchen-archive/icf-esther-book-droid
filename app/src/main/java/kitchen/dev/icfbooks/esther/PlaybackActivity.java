@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
@@ -32,14 +33,14 @@ public class PlaybackActivity extends AppCompatActivity {
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
-    private static final boolean AUTO_HIDE = true;
+    //private static final boolean AUTO_HIDE = true;
     public static final String ARG_URL = "ARG_URL";
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+    //private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
 
     /**
      * Some older devices needs a small delay between UI widget updates
@@ -48,7 +49,7 @@ public class PlaybackActivity extends AppCompatActivity {
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
-    private final Runnable mHidePart2Runnable = new Runnable() {
+    /*private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
         public void run() {
@@ -64,8 +65,8 @@ public class PlaybackActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
-    };
-    private final Runnable mShowPart2Runnable = new Runnable() {
+    };*/
+    /*private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
             // Delayed display of UI elements
@@ -81,13 +82,13 @@ public class PlaybackActivity extends AppCompatActivity {
         public void run() {
             hide();
         }
-    };
+    };*/
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+    /*private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (AUTO_HIDE) {
@@ -95,25 +96,27 @@ public class PlaybackActivity extends AppCompatActivity {
             }
             return false;
         }
-    };
+    };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_playback);
 
-        mVisible = true;
+        //mVisible = true;
         mContentView = findViewById(R.id.videoView);
 
-
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
+       /* mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
             }
-        });
+        });*/
 
         if (savedInstanceState == null) {
             VideoView video = (VideoView)findViewById(R.id.videoView);
@@ -143,18 +146,18 @@ public class PlaybackActivity extends AppCompatActivity {
         // Trigger the initial hide() shortly after the activity has been
         // created, to briefly hint to the user that UI controls
         // are available.
-        delayedHide(100);
+        //delayedHide(100);
     }
 
-    private void toggle() {
+    /*private void toggle() {
         if (mVisible) {
             hide();
         } else {
             show();
         }
-    }
+    }*/
 
-    private void hide() {
+    /*private void hide() {
         // Hide UI first
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -177,14 +180,14 @@ public class PlaybackActivity extends AppCompatActivity {
         // Schedule a runnable to display UI elements after a delay
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
-    }
+    }*/
 
     /**
      * Schedules a call to hide() in [delay] milliseconds, canceling any
      * previously scheduled calls.
      */
-    private void delayedHide(int delayMillis) {
+    /*private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
+    }*/
 }
