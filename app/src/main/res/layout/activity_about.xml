@@ -112,7 +112,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton"
-                android:src="@drawable/abc_ic_go_search_api_material"
+                android:src="@drawable/arrow_right_material"
                 android:background="@android:color/transparent"
                 android:scaleType="fitEnd" />
 
@@ -177,7 +177,7 @@
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/abc_ic_go_search_api_material"
+                android:src="@drawable/arrow_right_material"
                 android:background="@android:color/transparent"
                 android:scaleType="fitEnd"
                 android:contentDescription="follow" />
@@ -206,7 +206,7 @@
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/abc_ic_go_search_api_material"
+                android:src="@drawable/arrow_right_material"
                 android:background="@android:color/transparent"
                 android:scaleType="fitEnd" />
 
